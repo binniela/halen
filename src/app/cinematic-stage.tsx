@@ -1,0 +1,268 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+
+/**
+ * Responsive, dual-codec sources: WebM/VP9 first (smaller), H.264 MP4
+ * fallback; 720p for phones, 1080p above. Browsers pick the first playable
+ * <source> whose media matches, evaluated at load.
+ */
+function Sources({ base }: { base: string }) {
+  const u = (s: string) => `/videos/${s}`;
+  return (
+    <>
+      <source media="(max-width: 767px)" type="video/webm" src={u(`${base}-720.webm`)} />
+      <source media="(max-width: 767px)" type="video/mp4" src={u(`${base}-720.mp4`)} />
+      <source type="video/webm" src={u(`${base}-1080.webm`)} />
+      <source type="video/mp4" src={u(`${base}-1080.mp4`)} />
+    </>
+  );
+}
+
+/**
+ * HALEN — one continuous cinematic shot.
+ *
+ *   CLIP_A  ambient ocean loop   (hero, autoplay + loop)
+ *      |  scroll past the hero
+ *   CLIP_B  cinematic push-in    (plays once, never scrubbed)
+ *      |  on the final frames
+ *   CLIP_C  product loop         (loops, seamless dissolve from B)
+ *
+ * Everything is ref/DOM-driven with GPU opacity crossfades — no per-frame
+ * React state. The stage is pinned with position:sticky (a visual pin, never
+ * a scroll-lock — the user keeps full agency, Apple/Arc style).
+ */
+export default function CinematicStage() {
+  const aRef = useRef<HTMLVideoElement>(null);
+  const bRef = useRef<HTMLVideoElement>(null);
+  const cRef = useRef<HTMLVideoElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const cueRef = useRef<HTMLDivElement>(null);
+  const productRef = useRef<HTMLDivElement>(null);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const phase = useRef<"hero" | "transition" | "product">("hero");
+
+  useEffect(() => {
+    const a = aRef.current!;
+    const b = bRef.current!;
+    const c = cRef.current!;
+    const hero = heroRef.current!;
+    const cue = cueRef.current!;
+    const product = productRef.current!;
+    const sentinel = sentinelRef.current!;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const stage = stageRef.current!;
+    let reachedC = false;
+    let safety = 0;
+
+    // --- 1. Hero loop — poster paints instantly, frames replace it ----
+    a.classList.add("show");
+    const startA = () => a.play().catch(() => {});
+    startA();
+
+    // Autoplay fallback (strict mobile / low-power): start on first gesture.
+    const kick = () => {
+      startA();
+      ["pointerdown", "touchstart", "scroll", "keydown"].forEach((ev) =>
+        window.removeEventListener(ev, kick)
+      );
+    };
+    if (a.paused) {
+      ["pointerdown", "touchstart", "scroll", "keydown"].forEach((ev) =>
+        window.addEventListener(ev, kick, { passive: true })
+      );
+    }
+
+    // --- 2. Sequenced prefetch. Desktop warms B + C behind the hero.
+    // Mobile warms only B (saves bandwidth/battery); C is fetched the
+    // moment the push-in starts, so it's ready for the seamless handoff.
+    const warm = (...vids: HTMLVideoElement[]) =>
+      vids.forEach((v) => {
+        if (v.preload !== "auto") {
+          v.preload = "auto";
+          v.load();
+        }
+      });
+    const prefetch = () => warm(...(isMobile ? [b] : [b, c]));
+    if (a.readyState >= 3) prefetch();
+    else a.addEventListener("playing", prefetch, { once: true });
+    const prefetchFallback = window.setTimeout(prefetch, 1500);
+
+    // --- 3. Scroll-coupled hero exit (no parallax, just a gentle fade) --
+    // Hero copy dissolves as you move through the first viewport, so the
+    // film is unobstructed by the time the push-in begins.
+    let rafId = 0;
+    const onScroll = () => {
+      if (rafId || phase.current !== "hero") return;
+      rafId = requestAnimationFrame(() => {
+        rafId = 0;
+        const p = Math.min(1, window.scrollY / (window.innerHeight * 0.72));
+        hero.style.opacity = String(1 - p);
+        cue.style.opacity = String(Math.max(0, 1 - p * 2.2));
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // --- 5. B -> C seamless dissolve on the final frames ---------------
+    const LEAD = 0.6;
+    const goToC = () => {
+      if (reachedC) return;
+      reachedC = true;
+      phase.current = "product";
+      window.clearTimeout(safety);
+
+      c.currentTime = 0;
+      c.play().catch(() => {});
+      c.classList.add("show"); // C rises over B; start frames match
+      product.style.opacity = "1";
+
+      window.setTimeout(() => {
+        b.classList.remove("show");
+        b.pause();
+      }, reduce ? 0 : 1100);
+    };
+
+    // --- 4. A -> B push-in, triggered by scrolling past the hero -------
+    const startB = () => {
+      phase.current = "transition";
+      hero.style.opacity = "0";
+      hero.style.pointerEvents = "none";
+      b.currentTime = 0;
+      if (isMobile) warm(c); // ensure C is ready for the handoff
+      const onPlay = () => {
+        b.classList.add("show"); // B rises over A
+        window.setTimeout(() => a.pause(), reduce ? 0 : 900);
+        safety = window.setTimeout(goToC, 9500); // never freeze on B
+      };
+      const onFail = () => goToC(); // can't play B -> straight to product
+      const p = b.play();
+      if (p && typeof p.then === "function") p.then(onPlay).catch(onFail);
+      else onPlay();
+    };
+
+    const onTime = () => {
+      if (b.duration && b.currentTime >= b.duration - LEAD) goToC();
+    };
+    b.addEventListener("timeupdate", onTime);
+    b.addEventListener("ended", goToC);
+    b.addEventListener("error", goToC);
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && phase.current === "hero") startB();
+      },
+      { rootMargin: "0px 0px -85% 0px", threshold: 0 }
+    );
+    io.observe(sentinel);
+
+    // Pause decoders while the stage is offscreen (battery/perf on mobile);
+    // resume the current phase's clip when it returns to view.
+    const visIO = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) {
+          a.pause();
+          b.pause();
+          c.pause();
+        } else if (phase.current === "hero") {
+          a.play().catch(() => {});
+        } else if (phase.current === "product") {
+          c.play().catch(() => {});
+        }
+      },
+      { threshold: 0 }
+    );
+    visIO.observe(stage);
+
+    return () => {
+      io.disconnect();
+      visIO.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafId);
+      ["pointerdown", "touchstart", "scroll", "keydown"].forEach((ev) =>
+        window.removeEventListener(ev, kick)
+      );
+      window.clearTimeout(prefetchFallback);
+      window.clearTimeout(safety);
+      b.removeEventListener("timeupdate", onTime);
+      b.removeEventListener("ended", goToC);
+      b.removeEventListener("error", goToC);
+      a.removeEventListener("playing", prefetch);
+    };
+  }, []);
+
+  return (
+    <section id="top" className="relative h-[200svh] md:h-[260vh]">
+      <div
+        ref={stageRef}
+        className="cine-stage sticky top-0 h-svh w-full overflow-hidden"
+      >
+        {/* on-brand marine gradient — the load + degrade state */}
+        <div className="water" aria-hidden />
+
+        <video ref={aRef} className="cine-video" poster="/videos/clip-a-poster.jpg" autoPlay loop muted playsInline preload="auto" aria-hidden>
+          <Sources base="clip-a" />
+        </video>
+        <video ref={bRef} className="cine-video" poster="/videos/clip-b-poster.jpg" muted playsInline preload="none" aria-hidden>
+          <Sources base="clip-b" />
+        </video>
+        <video ref={cRef} className="cine-video" poster="/videos/clip-c-poster.jpg" loop muted playsInline preload="none" aria-hidden>
+          <Sources base="clip-c" />
+        </video>
+
+        {/* sculpted scrim: top for nav, soft center for the headline */}
+        <div className="cine-scrim" aria-hidden />
+        {/* film grain unifies video + UI and kills gradient banding */}
+        <div className="grain" aria-hidden />
+
+        {/* HERO overlay (over A) */}
+        <div
+          ref={heroRef}
+          className="cine-overlay absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-salt px-7"
+        >
+          <p className="label !text-salt/70 !tracking-[0.32em] sm:!tracking-[0.42em] mb-5 sm:mb-7">
+            Aegean Sea Salt
+          </p>
+          <h1 className="serif text-[clamp(2.6rem,9vw,7.5rem)] font-medium leading-[1.0] sm:leading-[0.98] text-balance max-w-[12ch] sm:max-w-[14ch]">
+            From still water, a quiet harvest.
+          </h1>
+        </div>
+
+        {/* scroll cue — a single quiet line that draws downward, no label */}
+        <div
+          ref={cueRef}
+          className="cine-overlay absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
+          aria-hidden
+        >
+          <span className="scroll-line" />
+        </div>
+
+        {/* PRODUCT overlay (over C) — sparse; jar stays the focus */}
+        <div
+          ref={productRef}
+          className="absolute inset-0 z-10 cine-overlay"
+          style={{ opacity: 0 }}
+        >
+          {/* grounding seam: melts the film into the editorial white below */}
+          <div className="cine-seam" aria-hidden />
+          <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-7 pb-[20vh] px-6 text-center">
+            <p className="serif italic text-[clamp(1.5rem,3.4vw,2.4rem)] text-salt max-w-xl leading-snug">
+              Hand-harvested from the Greek coast.
+            </p>
+            <a
+              href="#shop"
+              className="label !text-salt border border-salt/35 rounded-[3px] px-9 py-3.5 !tracking-[0.26em] transition-colors duration-300 hover:border-salt/80 hover:bg-salt/10"
+            >
+              Reserve a jar
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* push-in trigger — entering the top of the viewport starts CLIP_B */}
+      <div ref={sentinelRef} className="absolute top-[80svh] h-px w-full" aria-hidden />
+    </section>
+  );
+}

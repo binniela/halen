@@ -1,0 +1,808 @@
+==== clip-a ====
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-a.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 37762 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3896x2128, 37627 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[h264 @ 0x9c3041880] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0x9c3041880] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[libx264 @ 0x9c3041180] using cpu capabilities: ARMv8 NEON DotProd I8MM
+[libx264 @ 0x9c3041180] profile High, level 4.0, 4:2:0, 8-bit
+[libx264 @ 0x9c3041180] 264 - core 165 r3222 b35605a - H.264/MPEG-4 AVC codec - Copyleft 2003-2025 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=12 lookahead_threads=2 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=24 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'clip-a-1080.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, progressive), 1920x1048, q=2-31, 24 fps, 12288 tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 libx264
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:00.50    frame=   13 fps= 13 q=28.0 size=     512KiB time=00:00:00.45 bitrate=9152.1kbits/s speed=0.452x elapsed=0:00:01.01    frame=   36 fps= 24 q=28.0 size=    1024KiB time=00:00:01.41 bitrate=5921.6kbits/s speed=0.933x elapsed=0:00:01.51    frame=   65 fps= 32 q=28.0 size=    1792KiB time=00:00:02.62 bitrate=5592.6kbits/s speed= 1.3x elapsed=0:00:02.02    frame=   88 fps= 35 q=28.0 size=    2304KiB time=00:00:03.58 bitrate=5267.4kbits/s speed=1.42x elapsed=0:00:02.52    frame=  109 fps= 36 q=28.0 size=    2816KiB time=00:00:04.45 bitrate=5174.4kbits/s speed=1.47x elapsed=0:00:03.03    frame=  141 fps= 40 q=28.0 size=    3840KiB time=00:00:05.79 bitrate=5431.5kbits/s speed=1.64x elapsed=0:00:03.53    frame=  187 fps= 46 q=-1.0 size=    4864KiB time=00:00:07.70 bitrate=5169.2kbits/s speed=1.91x elapsed=0:00:04.04    [mp4 @ 0x9c301f700] Starting second pass: moving the moov atom to the beginning of the file
+[out#0/mp4 @ 0x9c2c40300] video:5236KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.057458%
+frame=  193 fps= 47 q=-1.0 Lsize=    5239KiB time=00:00:07.95 bitrate=5393.3kbits/s speed=1.95x elapsed=0:00:04.08    
+[libx264 @ 0x9c3041180] frame I:1     Avg QP:23.71  size:174406
+[libx264 @ 0x9c3041180] frame P:71    Avg QP:22.99  size: 51495
+[libx264 @ 0x9c3041180] frame B:121   Avg QP:25.99  size: 12652
+[libx264 @ 0x9c3041180] consecutive B-frames: 15.0%  0.0% 12.4% 72.5%
+[libx264 @ 0x9c3041180] mb I  I16..4: 16.5% 63.7% 19.8%
+[libx264 @ 0x9c3041180] mb P  I16..4:  1.2%  4.1%  0.5%  P16..4: 33.9% 21.8% 11.4%  0.0%  0.0%    skip:27.1%
+[libx264 @ 0x9c3041180] mb B  I16..4:  0.1%  0.3%  0.0%  B16..8: 30.3%  5.2%  1.3%  direct: 3.4%  skip:59.4%  L0:35.8% L1:45.6% BI:18.5%
+[libx264 @ 0x9c3041180] 8x8 transform intra:69.5% inter:75.1%
+[libx264 @ 0x9c3041180] coded y,uvDC,uvAC intra: 65.2% 86.3% 55.4% inter: 21.5% 22.3% 3.4%
+[libx264 @ 0x9c3041180] i16 v,h,dc,p:  5% 63%  5% 27%
+[libx264 @ 0x9c3041180] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu:  9% 35% 14%  5%  5%  3%  9%  3% 16%
+[libx264 @ 0x9c3041180] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu:  6% 48%  9%  4%  6%  3% 11%  3% 10%
+[libx264 @ 0x9c3041180] i8c dc,h,v,p: 33% 48%  7% 12%
+[libx264 @ 0x9c3041180] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0x9c3041180] ref P L0: 65.1% 17.5% 10.8%  6.7%
+[libx264 @ 0x9c3041180] ref B L0: 96.4%  2.4%  1.3%
+[libx264 @ 0x9c3041180] ref B L1: 99.0%  1.0%
+[libx264 @ 0x9c3041180] kb/s:5333.67
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-a.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 37762 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3896x2128, 37627 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[h264 @ 0xbdf021880] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0xbdf021880] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[libx264 @ 0xbdf021180] using cpu capabilities: ARMv8 NEON DotProd I8MM
+[libx264 @ 0xbdf021180] profile High, level 3.1, 4:2:0, 8-bit
+[libx264 @ 0xbdf021180] 264 - core 165 r3222 b35605a - H.264/MPEG-4 AVC codec - Copyleft 2003-2025 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=12 lookahead_threads=2 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=24 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=24.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'clip-a-720.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, progressive), 1280x700, q=2-31, 24 fps, 12288 tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 libx264
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    2 fps=0.0 q=29.0 size=       0KiB time=00:00:00.00 bitrate=N/A speed=   0x elapsed=0:00:00.50    frame=   47 fps= 47 q=29.0 size=     512KiB time=00:00:01.87 bitrate=2237.2kbits/s speed=1.86x elapsed=0:00:01.00    frame=   84 fps= 55 q=29.0 size=    1024KiB time=00:00:03.41 bitrate=2455.3kbits/s speed=2.25x elapsed=0:00:01.51    frame=  143 fps= 71 q=29.0 size=    1792KiB time=00:00:05.87 bitrate=2498.8kbits/s speed= 2.9x elapsed=0:00:02.02    [mp4 @ 0xbdf01f700] Starting second pass: moving the moov atom to the beginning of the file
+[out#0/mp4 @ 0xbdec60300] video:2478KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.108755%
+frame=  193 fps= 85 q=-1.0 Lsize=    2481KiB time=00:00:07.95 bitrate=2553.9kbits/s speed= 3.5x elapsed=0:00:02.27    
+[libx264 @ 0xbdf021180] frame I:1     Avg QP:25.01  size: 94183
+[libx264 @ 0xbdf021180] frame P:104   Avg QP:24.30  size: 19196
+[libx264 @ 0xbdf021180] frame B:88    Avg QP:26.59  size:  5074
+[libx264 @ 0xbdf021180] consecutive B-frames: 37.8%  2.1%  6.2% 53.9%
+[libx264 @ 0xbdf021180] mb I  I16..4: 16.9% 58.4% 24.7%
+[libx264 @ 0xbdf021180] mb P  I16..4:  0.3%  1.4%  0.2%  P16..4: 33.3% 17.7% 10.9%  0.0%  0.0%    skip:36.2%
+[libx264 @ 0xbdf021180] mb B  I16..4:  0.0%  0.1%  0.0%  B16..8: 27.1%  4.0%  1.1%  direct: 2.8%  skip:64.9%  L0:26.7% L1:49.8% BI:23.5%
+[libx264 @ 0xbdf021180] 8x8 transform intra:68.1% inter:69.2%
+[libx264 @ 0xbdf021180] coded y,uvDC,uvAC intra: 72.8% 87.0% 63.8% inter: 22.5% 21.1% 4.8%
+[libx264 @ 0xbdf021180] i16 v,h,dc,p:  3% 64%  3% 30%
+[libx264 @ 0xbdf021180] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu:  4% 33% 13%  6%  6%  4% 11%  4% 20%
+[libx264 @ 0xbdf021180] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu:  6% 44% 11%  4%  6%  3% 10%  3% 12%
+[libx264 @ 0xbdf021180] i8c dc,h,v,p: 33% 46%  7% 14%
+[libx264 @ 0xbdf021180] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0xbdf021180] ref P L0: 71.8% 18.8%  5.7%  3.7%
+[libx264 @ 0xbdf021180] ref B L0: 97.6%  1.4%  1.0%
+[libx264 @ 0xbdf021180] ref B L1: 99.2%  0.8%
+[libx264 @ 0xbdf021180] kb/s:2523.97
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-a.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 37762 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3896x2128, 37627 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> vp9 (libvpx-vp9))
+Press [q] to stop, [?] for help
+[h264 @ 0x84c805c00] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0x84c805c00] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[libvpx-vp9 @ 0x84c805180] v1.16.0
+Output #0, webm, to 'clip-a-1080.webm':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: vp9, yuv420p(tv, progressive), 1920x1048, q=2-31, 24 fps, 1k tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 libvpx-vp9
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:00.50    frame=    4 fps=4.0 q=31.0 size=       1KiB time=00:00:00.16 bitrate=  28.7kbits/s speed=0.166x elapsed=0:00:01.00    frame=    8 fps=5.3 q=31.0 size=       1KiB time=00:00:00.33 bitrate=  14.4kbits/s speed=0.221x elapsed=0:00:01.51    frame=   14 fps=6.9 q=31.0 size=       1KiB time=00:00:00.58 bitrate=   8.2kbits/s speed=0.289x elapsed=0:00:02.01    frame=   20 fps=7.9 q=31.0 size=       1KiB time=00:00:00.83 bitrate=   5.7kbits/s speed=0.33x elapsed=0:00:02.52    frame=   26 fps=8.6 q=31.0 size=       1KiB time=00:00:01.08 bitrate=   4.4kbits/s speed=0.357x elapsed=0:00:03.03    frame=   31 fps=8.8 q=19.0 size=       1KiB time=00:00:01.29 bitrate=   3.7kbits/s speed=0.365x elapsed=0:00:03.53    frame=   37 fps=9.2 q=26.0 size=       1KiB time=00:00:01.54 bitrate=   3.1kbits/s speed=0.382x elapsed=0:00:04.03    frame=   44 fps=9.7 q=31.0 size=       1KiB time=00:00:01.83 bitrate=   2.6kbits/s speed=0.403x elapsed=0:00:04.54    frame=   49 fps=9.7 q=19.0 size=       1KiB time=00:00:02.04 bitrate=   2.3kbits/s speed=0.404x elapsed=0:00:05.05    frame=   55 fps=9.9 q=29.0 size=       1KiB time=00:00:02.29 bitrate=   2.1kbits/s speed=0.412x elapsed=0:00:05.55    frame=   60 fps=9.9 q=31.0 size=       1KiB time=00:00:02.50 bitrate=   1.9kbits/s speed=0.412x elapsed=0:00:06.06    frame=   66 fps= 10 q=31.0 size=       1KiB time=00:00:02.75 bitrate=   1.7kbits/s speed=0.419x elapsed=0:00:06.56    frame=   70 fps=9.9 q=31.0 size=       1KiB time=00:00:02.91 bitrate=   1.6kbits/s speed=0.413x elapsed=0:00:07.06    frame=   76 fps= 10 q=31.0 size=       1KiB time=00:00:03.16 bitrate=   1.5kbits/s speed=0.418x elapsed=0:00:07.57    frame=   80 fps=9.9 q=31.0 size=       1KiB time=00:00:03.33 bitrate=   1.4kbits/s speed=0.412x elapsed=0:00:08.08    frame=   84 fps=9.8 q=31.0 size=       1KiB time=00:00:03.50 bitrate=   1.4kbits/s speed=0.407x elapsed=0:00:08.59    frame=   89 fps=9.8 q=19.0 size=       1KiB time=00:00:03.70 bitrate=   1.3kbits/s speed=0.408x elapsed=0:00:09.09    frame=   95 fps=9.9 q=29.0 size=       1KiB time=00:00:03.95 bitrate=   1.2kbits/s speed=0.412x elapsed=0:00:09.59    frame=  100 fps=9.9 q=31.0 size=       1KiB time=00:00:04.16 bitrate=   1.1kbits/s speed=0.412x elapsed=0:00:10.10    frame=  107 fps= 10 q=29.0 size=       1KiB time=00:00:04.45 bitrate=   1.1kbits/s speed=0.42x elapsed=0:00:10.61    frame=  113 fps= 10 q=19.0 size=       1KiB time=00:00:04.70 bitrate=   1.0kbits/s speed=0.424x elapsed=0:00:11.11    frame=  120 fps= 10 q=31.0 size=       1KiB time=00:00:05.00 bitrate=   1.0kbits/s speed=0.43x elapsed=0:00:11.61    frame=  126 fps= 10 q=31.0 size=    3328KiB time=00:00:05.25 bitrate=5192.9kbits/s speed=0.433x elapsed=0:00:12.12    frame=  132 fps= 10 q=31.0 size=    3328KiB time=00:00:05.50 bitrate=4956.9kbits/s speed=0.434x elapsed=0:00:12.67    frame=  140 fps= 11 q=31.0 size=    3328KiB time=00:00:05.83 bitrate=4673.7kbits/s speed=0.442x elapsed=0:00:13.18    frame=  147 fps= 11 q=29.0 size=    3328KiB time=00:00:06.12 bitrate=4451.1kbits/s speed=0.447x elapsed=0:00:13.69    frame=  152 fps= 11 q=31.0 size=    3328KiB time=00:00:06.33 bitrate=4304.7kbits/s speed=0.446x elapsed=0:00:14.19    frame=  159 fps= 11 q=19.0 size=    3328KiB time=00:00:06.62 bitrate=4115.2kbits/s speed=0.451x elapsed=0:00:14.70    frame=  166 fps= 11 q=31.0 size=    3328KiB time=00:00:06.91 bitrate=3941.6kbits/s speed=0.455x elapsed=0:00:15.20    frame=  169 fps= 11 q=19.0 size=    3328KiB time=00:00:07.04 bitrate=3871.7kbits/s speed=0.448x elapsed=0:00:15.70    frame=  169 fps= 10 q=19.0 size=    3328KiB time=00:00:07.04 bitrate=3871.7kbits/s speed=0.434x elapsed=0:00:16.21    frame=  169 fps= 10 q=19.0 size=    3328KiB time=00:00:07.04 bitrate=3871.7kbits/s speed=0.421x elapsed=0:00:16.71    frame=  169 fps=9.8 q=19.0 size=    3328KiB time=00:00:07.04 bitrate=3871.7kbits/s speed=0.409x elapsed=0:00:17.21    [out#0/webm @ 0x84d444300] video:5279KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.039257%
+frame=  193 fps= 11 q=19.0 Lsize=    5281KiB time=00:00:08.04 bitrate=5379.6kbits/s speed=0.464x elapsed=0:00:17.32    
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-a.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 37762 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3896x2128, 37627 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> vp9 (libvpx-vp9))
+Press [q] to stop, [?] for help
+[h264 @ 0xa43019c00] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0xa43019c00] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[libvpx-vp9 @ 0xa43019180] v1.16.0
+Output #0, webm, to 'clip-a-720.webm':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: vp9, yuv420p(tv, progressive), 1280x700, q=2-31, 24 fps, 1k tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 libvpx-vp9
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    4 fps=0.0 q=33.0 size=       1KiB time=00:00:00.16 bitrate=  28.7kbits/s speed=0.329x elapsed=0:00:00.50    frame=   15 fps= 15 q=31.0 size=       1KiB time=00:00:00.62 bitrate=   7.7kbits/s speed=0.617x elapsed=0:00:01.01    frame=   26 fps= 17 q=33.0 size=       1KiB time=00:00:01.08 bitrate=   4.4kbits/s speed=0.716x elapsed=0:00:01.51    frame=   38 fps= 19 q=33.0 size=       1KiB time=00:00:01.58 bitrate=   3.0kbits/s speed=0.785x elapsed=0:00:02.01    frame=   48 fps= 19 q=33.0 size=       1KiB time=00:00:02.00 bitrate=   2.4kbits/s speed=0.792x elapsed=0:00:02.52    frame=   58 fps= 19 q=33.0 size=       1KiB time=00:00:02.41 bitrate=   2.0kbits/s speed=0.798x elapsed=0:00:03.02    frame=   70 fps= 20 q=33.0 size=       1KiB time=00:00:02.91 bitrate=   1.6kbits/s speed=0.824x elapsed=0:00:03.53    frame=   82 fps= 20 q=33.0 size=       1KiB time=00:00:03.41 bitrate=   1.4kbits/s speed=0.845x elapsed=0:00:04.04    frame=   88 fps= 19 q=33.0 size=       1KiB time=00:00:03.66 bitrate=   1.3kbits/s speed=0.805x elapsed=0:00:04.55    frame=   95 fps= 19 q=31.0 size=       1KiB time=00:00:03.95 bitrate=   1.2kbits/s speed=0.783x elapsed=0:00:05.05    frame=  102 fps= 18 q=33.0 size=       1KiB time=00:00:04.25 bitrate=   1.1kbits/s speed=0.764x elapsed=0:00:05.56    frame=  112 fps= 18 q=33.0 size=       1KiB time=00:00:04.66 bitrate=   1.0kbits/s speed=0.77x elapsed=0:00:06.06    frame=  121 fps= 18 q=22.0 size=       1KiB time=00:00:05.04 bitrate=   0.9kbits/s speed=0.767x elapsed=0:00:06.56    frame=  130 fps= 18 q=33.0 size=    1536KiB time=00:00:05.41 bitrate=2323.0kbits/s speed=0.766x elapsed=0:00:07.07    frame=  142 fps= 19 q=33.0 size=    1536KiB time=00:00:05.91 bitrate=2126.7kbits/s speed=0.781x elapsed=0:00:07.57    frame=  152 fps= 19 q=33.0 size=    1536KiB time=00:00:06.33 bitrate=1986.8kbits/s speed=0.784x elapsed=0:00:08.07    frame=  159 fps= 19 q=22.0 size=    1536KiB time=00:00:06.62 bitrate=1899.3kbits/s speed=0.772x elapsed=0:00:08.58    frame=  165 fps= 18 q=28.0 size=    1536KiB time=00:00:06.87 bitrate=1830.2kbits/s speed=0.757x elapsed=0:00:09.08    frame=  169 fps= 18 q=22.0 size=    1536KiB time=00:00:07.04 bitrate=1786.9kbits/s speed=0.734x elapsed=0:00:09.58    frame=  169 fps= 17 q=22.0 size=    1536KiB time=00:00:07.04 bitrate=1786.9kbits/s speed=0.698x elapsed=0:00:10.09    frame=  169 fps= 16 q=22.0 size=    1536KiB time=00:00:07.04 bitrate=1786.9kbits/s speed=0.665x elapsed=0:00:10.59    [out#0/webm @ 0xa43000840] video:2606KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.077391%
+frame=  193 fps= 18 q=22.0 Lsize=    2608KiB time=00:00:08.04 bitrate=2656.5kbits/s speed=0.734x elapsed=0:00:10.96    
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-a.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 37762 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3896x2128, 37627 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> mjpeg (native))
+Press [q] to stop, [?] for help
+[h264 @ 0x9fac39880] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0x9fac39880] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+Output #0, image2, to 'clip-a-poster.jpg':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: mjpeg, yuv420p(pc, progressive), 1600x874, q=2-31, 200 kb/s, 24 fps, 24 tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 mjpeg
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: N/A
+[image2 @ 0x9fac2b700] The specified filename 'clip-a-poster.jpg' does not contain an image sequence pattern or a pattern is invalid.
+[image2 @ 0x9fac2b700] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.
+[out#0/image2 @ 0x9fb04c300] video:208KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=3.0 Lsize=N/A time=00:00:00.04 bitrate=N/A dup=1 drop=0 speed=0.204x elapsed=0:00:00.20    
+==== clip-b ====
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-b.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 43861 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3896x2128, 43726 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[h264 @ 0x8a7039880] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0x8a7039880] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[libx264 @ 0x8a7039180] using cpu capabilities: ARMv8 NEON DotProd I8MM
+[libx264 @ 0x8a7039180] profile High, level 4.0, 4:2:0, 8-bit
+[libx264 @ 0x8a7039180] 264 - core 165 r3222 b35605a - H.264/MPEG-4 AVC codec - Copyleft 2003-2025 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=12 lookahead_threads=2 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=24 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'clip-b-1080.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, progressive), 1920x1048, q=2-31, 24 fps, 12288 tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 libx264
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:00.50    frame=    1 fps=1.0 q=28.0 size=       0KiB time=-00:00:00.04 bitrate=N/A speed=N/A elapsed=0:00:01.01    frame=   17 fps= 11 q=28.0 size=     512KiB time=00:00:00.62 bitrate=6711.5kbits/s speed=0.412x elapsed=0:00:01.51    frame=   29 fps= 14 q=28.0 size=    1024KiB time=00:00:01.12 bitrate=7456.9kbits/s speed=0.557x elapsed=0:00:02.02    frame=   49 fps= 19 q=28.0 size=    1792KiB time=00:00:01.95 bitrate=7496.4kbits/s speed=0.775x elapsed=0:00:02.52    frame=   65 fps= 21 q=28.0 size=    2304KiB time=00:00:02.62 bitrate=7190.4kbits/s speed=0.867x elapsed=0:00:03.02    frame=   85 fps= 24 q=28.0 size=    3072KiB time=00:00:03.45 bitrate=7277.0kbits/s speed=0.979x elapsed=0:00:03.53    frame=  105 fps= 26 q=28.0 size=    3840KiB time=00:00:04.29 bitrate=7329.9kbits/s speed=1.06x elapsed=0:00:04.03    frame=  129 fps= 28 q=28.0 size=    4864KiB time=00:00:05.29 bitrate=7530.0kbits/s speed=1.17x elapsed=0:00:04.54    frame=  150 fps= 30 q=28.0 size=    5376KiB time=00:00:06.16 bitrate=7141.7kbits/s speed=1.22x elapsed=0:00:05.04    frame=  180 fps= 32 q=28.0 size=    6144KiB time=00:00:07.41 bitrate=6786.3kbits/s speed=1.34x elapsed=0:00:05.55    [mp4 @ 0x8a6c1f700] Starting second pass: moving the moov atom to the beginning of the file
+[out#0/mp4 @ 0x8a7000840] video:6360KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.050134%
+frame=  193 fps= 34 q=-1.0 Lsize=    6363KiB time=00:00:07.95 bitrate=6549.9kbits/s speed=1.41x elapsed=0:00:05.63    
+[libx264 @ 0x8a7039180] frame I:1     Avg QP:24.65  size:153700
+[libx264 @ 0x8a7039180] frame P:49    Avg QP:24.47  size: 65555
+[libx264 @ 0x8a7039180] frame B:143   Avg QP:26.82  size: 22000
+[libx264 @ 0x8a7039180] consecutive B-frames:  1.0%  0.0%  1.6% 97.4%
+[libx264 @ 0x8a7039180] mb I  I16..4: 16.5% 64.1% 19.4%
+[libx264 @ 0x8a7039180] mb P  I16..4:  4.0% 12.3%  1.4%  P16..4: 37.3% 26.9% 10.1%  0.0%  0.0%    skip: 8.2%
+[libx264 @ 0x8a7039180] mb B  I16..4:  0.4%  2.2%  0.1%  B16..8: 42.8% 10.6%  1.9%  direct: 3.8%  skip:38.1%  L0:37.6% L1:50.2% BI:12.2%
+[libx264 @ 0x8a7039180] 8x8 transform intra:72.7% inter:79.1%
+[libx264 @ 0x8a7039180] coded y,uvDC,uvAC intra: 62.9% 72.9% 30.1% inter: 26.1% 26.9% 2.3%
+[libx264 @ 0x8a7039180] i16 v,h,dc,p:  6% 64%  4% 27%
+[libx264 @ 0x8a7039180] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 14% 33% 14%  5%  5%  4%  8%  4% 12%
+[libx264 @ 0x8a7039180] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 13% 47% 10%  4%  5%  3%  7%  3%  8%
+[libx264 @ 0x8a7039180] i8c dc,h,v,p: 41% 41% 10%  9%
+[libx264 @ 0x8a7039180] Weighted P-Frames: Y:12.2% UV:0.0%
+[libx264 @ 0x8a7039180] ref P L0: 54.8% 24.5% 14.6%  5.8%  0.4%
+[libx264 @ 0x8a7039180] ref B L0: 94.4%  4.4%  1.2%
+[libx264 @ 0x8a7039180] ref B L1: 98.8%  1.2%
+[libx264 @ 0x8a7039180] kb/s:6478.12
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-b.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 43861 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3896x2128, 43726 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[h264 @ 0xc2ac39880] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0xc2ac39880] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[libx264 @ 0xc2ac39180] using cpu capabilities: ARMv8 NEON DotProd I8MM
+[libx264 @ 0xc2ac39180] profile High, level 3.1, 4:2:0, 8-bit
+[libx264 @ 0xc2ac39180] 264 - core 165 r3222 b35605a - H.264/MPEG-4 AVC codec - Copyleft 2003-2025 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=12 lookahead_threads=2 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=24 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=24.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'clip-b-720.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, progressive), 1280x700, q=2-31, 24 fps, 12288 tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 libx264
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    2 fps=0.0 q=29.0 size=       0KiB time=00:00:00.00 bitrate=N/A speed=   0x elapsed=0:00:00.50    frame=   37 fps= 37 q=29.0 size=     512KiB time=00:00:01.45 bitrate=2876.4kbits/s speed=1.45x elapsed=0:00:01.00    frame=   69 fps= 46 q=29.0 size=    1024KiB time=00:00:02.79 bitrate=3005.0kbits/s speed=1.84x elapsed=0:00:01.51    frame=  109 fps= 54 q=29.0 size=    1792KiB time=00:00:04.45 bitrate=3292.8kbits/s speed=2.21x elapsed=0:00:02.01    frame=  172 fps= 68 q=29.0 size=    2560KiB time=00:00:07.08 bitrate=2960.7kbits/s speed=2.81x elapsed=0:00:02.51    [mp4 @ 0xc2ac2f700] Starting second pass: moving the moov atom to the beginning of the file
+[out#0/mp4 @ 0xc2b04c300] video:2936KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.106430%
+frame=  193 fps= 74 q=-1.0 Lsize=    2939KiB time=00:00:07.95 bitrate=3025.6kbits/s speed=3.06x elapsed=0:00:02.60    
+[libx264 @ 0xc2ac39180] frame I:1     Avg QP:25.87  size: 82788
+[libx264 @ 0xc2ac39180] frame P:49    Avg QP:25.75  size: 32600
+[libx264 @ 0xc2ac39180] frame B:143   Avg QP:28.19  size:  9271
+[libx264 @ 0xc2ac39180] consecutive B-frames:  1.0%  0.0%  1.6% 97.4%
+[libx264 @ 0xc2ac39180] mb I  I16..4: 17.6% 59.7% 22.7%
+[libx264 @ 0xc2ac39180] mb P  I16..4:  1.9%  7.8%  1.2%  P16..4: 37.0% 29.4% 12.7%  0.0%  0.0%    skip:10.0%
+[libx264 @ 0xc2ac39180] mb B  I16..4:  0.1%  0.9%  0.1%  B16..8: 43.3%  9.8%  2.0%  direct: 3.5%  skip:40.3%  L0:34.3% L1:48.9% BI:16.8%
+[libx264 @ 0xc2ac39180] 8x8 transform intra:71.7% inter:75.3%
+[libx264 @ 0xc2ac39180] coded y,uvDC,uvAC intra: 71.3% 73.7% 38.5% inter: 25.2% 22.9% 3.6%
+[libx264 @ 0xc2ac39180] i16 v,h,dc,p:  5% 64%  3% 29%
+[libx264 @ 0xc2ac39180] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu:  6% 36% 11%  5%  6%  5% 10%  5% 16%
+[libx264 @ 0xc2ac39180] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 13% 42% 11%  5%  6%  4%  7%  4%  9%
+[libx264 @ 0xc2ac39180] i8c dc,h,v,p: 40% 42%  8% 10%
+[libx264 @ 0xc2ac39180] Weighted P-Frames: Y:12.2% UV:0.0%
+[libx264 @ 0xc2ac39180] ref P L0: 55.0% 26.9% 12.4%  5.4%  0.3%
+[libx264 @ 0xc2ac39180] ref B L0: 95.3%  3.8%  0.9%
+[libx264 @ 0xc2ac39180] ref B L1: 98.5%  1.5%
+[libx264 @ 0xc2ac39180] kb/s:2990.41
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-b.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 43861 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3896x2128, 43726 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> vp9 (libvpx-vp9))
+Press [q] to stop, [?] for help
+[h264 @ 0x8b2c45c00] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0x8b2c45c00] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[libvpx-vp9 @ 0x8b2c45180] v1.16.0
+Output #0, webm, to 'clip-b-1080.webm':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: vp9, yuv420p(tv, progressive), 1920x1048, q=2-31, 24 fps, 1k tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 libvpx-vp9
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:00.50    frame=    7 fps=6.9 q=29.0 size=       1KiB time=00:00:00.29 bitrate=  16.4kbits/s speed=0.287x elapsed=0:00:01.01    frame=   14 fps=9.2 q=31.0 size=       1KiB time=00:00:00.58 bitrate=   8.2kbits/s speed=0.384x elapsed=0:00:01.51    frame=   20 fps=9.9 q=31.0 size=       1KiB time=00:00:00.83 bitrate=   5.7kbits/s speed=0.412x elapsed=0:00:02.02    frame=   25 fps=9.9 q=19.0 size=       1KiB time=00:00:01.04 bitrate=   4.6kbits/s speed=0.411x elapsed=0:00:02.53    frame=   30 fps=9.9 q=31.0 size=       1KiB time=00:00:01.25 bitrate=   3.8kbits/s speed=0.412x elapsed=0:00:03.03    frame=   37 fps= 10 q=26.0 size=       1KiB time=00:00:01.54 bitrate=   3.1kbits/s speed=0.435x elapsed=0:00:03.54    frame=   43 fps= 11 q=29.0 size=       1KiB time=00:00:01.79 bitrate=   2.7kbits/s speed=0.443x elapsed=0:00:04.04    frame=   48 fps= 11 q=31.0 size=       1KiB time=00:00:02.00 bitrate=   2.4kbits/s speed=0.439x elapsed=0:00:04.55    frame=   54 fps= 11 q=31.0 size=       1KiB time=00:00:02.25 bitrate=   2.1kbits/s speed=0.445x elapsed=0:00:05.05    frame=   60 fps= 11 q=31.0 size=       1KiB time=00:00:02.50 bitrate=   1.9kbits/s speed=0.45x elapsed=0:00:05.56    frame=   67 fps= 11 q=29.0 size=       1KiB time=00:00:02.79 bitrate=   1.7kbits/s speed=0.46x elapsed=0:00:06.06    frame=   72 fps= 11 q=31.0 size=       1KiB time=00:00:03.00 bitrate=   1.6kbits/s speed=0.457x elapsed=0:00:06.56    frame=   78 fps= 11 q=31.0 size=       1KiB time=00:00:03.25 bitrate=   1.5kbits/s speed=0.46x elapsed=0:00:07.06    frame=   85 fps= 11 q=26.0 size=       1KiB time=00:00:03.54 bitrate=   1.4kbits/s speed=0.467x elapsed=0:00:07.57    frame=   91 fps= 11 q=19.0 size=       1KiB time=00:00:03.79 bitrate=   1.3kbits/s speed=0.469x elapsed=0:00:08.08    frame=   96 fps= 11 q=31.0 size=       1KiB time=00:00:04.00 bitrate=   1.2kbits/s speed=0.466x elapsed=0:00:08.58    frame=  102 fps= 11 q=31.0 size=       1KiB time=00:00:04.25 bitrate=   1.1kbits/s speed=0.467x elapsed=0:00:09.09    frame=  108 fps= 11 q=31.0 size=       1KiB time=00:00:04.50 bitrate=   1.1kbits/s speed=0.469x elapsed=0:00:09.60    frame=  114 fps= 11 q=31.0 size=       1KiB time=00:00:04.75 bitrate=   1.0kbits/s speed=0.47x elapsed=0:00:10.10    frame=  120 fps= 11 q=31.0 size=       1KiB time=00:00:05.00 bitrate=   1.0kbits/s speed=0.471x elapsed=0:00:10.61    frame=  126 fps= 11 q=31.0 size=    4608KiB time=00:00:05.25 bitrate=7190.2kbits/s speed=0.472x elapsed=0:00:11.11    frame=  133 fps= 11 q=26.0 size=    4864KiB time=00:00:05.54 bitrate=7190.2kbits/s speed=0.477x elapsed=0:00:11.62    frame=  141 fps= 12 q=26.0 size=    4864KiB time=00:00:05.87 bitrate=6782.3kbits/s speed=0.484x elapsed=0:00:12.13    frame=  147 fps= 12 q=29.0 size=    4864KiB time=00:00:06.12 bitrate=6505.5kbits/s speed=0.485x elapsed=0:00:12.63    frame=  154 fps= 12 q=31.0 size=    4864KiB time=00:00:06.41 bitrate=6209.7kbits/s speed=0.488x elapsed=0:00:13.14    frame=  162 fps= 12 q=31.0 size=    4864KiB time=00:00:06.75 bitrate=5903.1kbits/s speed=0.495x elapsed=0:00:13.64    frame=  169 fps= 12 q=19.0 size=    4864KiB time=00:00:07.04 bitrate=5658.6kbits/s speed=0.498x elapsed=0:00:14.15    frame=  169 fps= 12 q=19.0 size=    4864KiB time=00:00:07.04 bitrate=5658.6kbits/s speed=0.48x elapsed=0:00:14.65    frame=  169 fps= 11 q=19.0 size=    4864KiB time=00:00:07.04 bitrate=5658.6kbits/s speed=0.464x elapsed=0:00:15.16    [out#0/webm @ 0x8b3040300] video:6301KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.033785%
+frame=  193 fps= 13 q=19.0 Lsize=    6303KiB time=00:00:08.04 bitrate=6421.3kbits/s speed=0.525x elapsed=0:00:15.31    
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-b.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 43861 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3896x2128, 43726 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> vp9 (libvpx-vp9))
+Press [q] to stop, [?] for help
+[h264 @ 0xa66c45c00] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0xa66c45c00] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[libvpx-vp9 @ 0xa66c45180] v1.16.0
+Output #0, webm, to 'clip-b-720.webm':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: vp9, yuv420p(tv, progressive), 1280x700, q=2-31, 24 fps, 1k tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 libvpx-vp9
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    5 fps=0.0 q=28.0 size=       1KiB time=00:00:00.20 bitrate=  23.0kbits/s speed=0.409x elapsed=0:00:00.50    frame=   14 fps= 14 q=33.0 size=       1KiB time=00:00:00.58 bitrate=   8.2kbits/s speed=0.575x elapsed=0:00:01.01    frame=   24 fps= 16 q=33.0 size=       1KiB time=00:00:01.00 bitrate=   4.8kbits/s speed=0.658x elapsed=0:00:01.52    frame=   34 fps= 17 q=33.0 size=       1KiB time=00:00:01.41 bitrate=   3.4kbits/s speed=0.697x elapsed=0:00:02.03    frame=   44 fps= 17 q=33.0 size=       1KiB time=00:00:01.83 bitrate=   2.6kbits/s speed=0.722x elapsed=0:00:02.53    frame=   52 fps= 17 q=33.0 size=       1KiB time=00:00:02.16 bitrate=   2.2kbits/s speed=0.712x elapsed=0:00:03.04    frame=   60 fps= 17 q=33.0 size=       1KiB time=00:00:02.50 bitrate=   1.9kbits/s speed=0.705x elapsed=0:00:03.54    frame=   70 fps= 17 q=33.0 size=       1KiB time=00:00:02.91 bitrate=   1.6kbits/s speed=0.72x elapsed=0:00:04.05    frame=   80 fps= 18 q=33.0 size=       1KiB time=00:00:03.33 bitrate=   1.4kbits/s speed=0.732x elapsed=0:00:04.55    frame=   87 fps= 17 q=31.0 size=       1KiB time=00:00:03.62 bitrate=   1.3kbits/s speed=0.716x elapsed=0:00:05.06    frame=   96 fps= 17 q=33.0 size=       1KiB time=00:00:04.00 bitrate=   1.2kbits/s speed=0.719x elapsed=0:00:05.56    frame=  107 fps= 18 q=31.0 size=       1KiB time=00:00:04.45 bitrate=   1.1kbits/s speed=0.734x elapsed=0:00:06.07    frame=  117 fps= 18 q=28.0 size=       1KiB time=00:00:04.87 bitrate=   1.0kbits/s speed=0.741x elapsed=0:00:06.57    frame=  126 fps= 18 q=33.0 size=    2304KiB time=00:00:05.25 bitrate=3595.1kbits/s speed=0.741x elapsed=0:00:07.08    frame=  136 fps= 18 q=33.0 size=    2560KiB time=00:00:05.66 bitrate=3700.9kbits/s speed=0.747x elapsed=0:00:07.58    frame=  148 fps= 18 q=33.0 size=    2560KiB time=00:00:06.16 bitrate=3400.8kbits/s speed=0.762x elapsed=0:00:08.09    frame=  161 fps= 19 q=22.0 size=    2560KiB time=00:00:06.70 bitrate=3126.2kbits/s speed=0.78x elapsed=0:00:08.59    frame=  169 fps= 19 q=22.0 size=    2560KiB time=00:00:07.04 bitrate=2978.2kbits/s speed=0.774x elapsed=0:00:09.10    frame=  169 fps= 18 q=22.0 size=    2560KiB time=00:00:07.04 bitrate=2978.2kbits/s speed=0.733x elapsed=0:00:09.60    [out#0/webm @ 0xa67040300] video:3269KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.062499%
+frame=  193 fps= 20 q=22.0 Lsize=    3271KiB time=00:00:08.04 bitrate=3332.0kbits/s speed=0.832x elapsed=0:00:09.66    
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-b.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 43861 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3896x2128, 43726 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> mjpeg (native))
+Press [q] to stop, [?] for help
+[h264 @ 0xb65019880] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0xb65019880] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+Output #0, image2, to 'clip-b-poster.jpg':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: mjpeg, yuv420p(pc, progressive), 1600x874, q=2-31, 200 kb/s, 24 fps, 24 tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 mjpeg
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: N/A
+[image2 @ 0xb64c1f700] The specified filename 'clip-b-poster.jpg' does not contain an image sequence pattern or a pattern is invalid.
+[image2 @ 0xb64c1f700] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.
+[out#0/image2 @ 0xb65000840] video:203KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=3.0 Lsize=N/A time=00:00:00.04 bitrate=N/A dup=1 drop=0 speed=0.297x elapsed=0:00:00.14    
+==== clip-c ====
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-c.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 16226 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3876x2136, 16090 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[h264 @ 0x7ff019880] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0x7ff019880] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[libx264 @ 0x7ff019180] using cpu capabilities: ARMv8 NEON DotProd I8MM
+[libx264 @ 0x7ff019180] profile High, level 4.0, 4:2:0, 8-bit
+[libx264 @ 0x7ff019180] 264 - core 165 r3222 b35605a - H.264/MPEG-4 AVC codec - Copyleft 2003-2025 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=12 lookahead_threads=2 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=24 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'clip-c-1080.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, progressive), 1920x1058, q=2-31, 24 fps, 12288 tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 libx264
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    2 fps=0.0 q=28.0 size=       0KiB time=00:00:00.00 bitrate=N/A speed=   0x elapsed=0:00:00.50    frame=   30 fps= 30 q=28.0 size=     256KiB time=00:00:01.16 bitrate=1797.9kbits/s speed=1.16x elapsed=0:00:01.00    frame=   50 fps= 33 q=28.0 size=     512KiB time=00:00:02.00 bitrate=2097.3kbits/s speed=1.32x elapsed=0:00:01.50    frame=   81 fps= 40 q=28.0 size=     768KiB time=00:00:03.29 bitrate=1911.4kbits/s speed=1.63x elapsed=0:00:02.01    frame=  113 fps= 45 q=28.0 size=    1280KiB time=00:00:04.62 bitrate=2267.3kbits/s speed=1.84x elapsed=0:00:02.51    frame=  137 fps= 45 q=28.0 size=    1536KiB time=00:00:05.62 bitrate=2237.0kbits/s speed=1.86x elapsed=0:00:03.02    frame=  185 fps= 52 q=-1.0 size=    2048KiB time=00:00:07.62 bitrate=2200.3kbits/s speed=2.16x elapsed=0:00:03.52    [mp4 @ 0x7fec1f700] Starting second pass: moving the moov atom to the beginning of the file
+[out#0/mp4 @ 0x7ff000840] video:2142KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.146313%
+frame=  193 fps= 54 q=-1.0 Lsize=    2145KiB time=00:00:07.95 bitrate=2208.0kbits/s speed=2.23x elapsed=0:00:03.56    
+[libx264 @ 0x7ff019180] frame I:1     Avg QP:22.05  size:124415
+[libx264 @ 0x7ff019180] frame P:48    Avg QP:21.94  size: 26003
+[libx264 @ 0x7ff019180] frame B:144   Avg QP:25.51  size:  5694
+[libx264 @ 0x7ff019180] consecutive B-frames:  0.5%  0.0%  0.0% 99.5%
+[libx264 @ 0x7ff019180] mb I  I16..4: 15.2% 71.7% 13.1%
+[libx264 @ 0x7ff019180] mb P  I16..4:  2.9%  6.8%  0.3%  P16..4: 36.6% 13.4%  5.1%  0.0%  0.0%    skip:34.9%
+[libx264 @ 0x7ff019180] mb B  I16..4:  0.1%  0.2%  0.0%  B16..8: 22.9%  2.6%  0.3%  direct: 1.2%  skip:72.7%  L0:35.0% L1:60.0% BI: 5.1%
+[libx264 @ 0x7ff019180] 8x8 transform intra:69.3% inter:88.6%
+[libx264 @ 0x7ff019180] coded y,uvDC,uvAC intra: 55.8% 84.5% 29.7% inter: 8.7% 13.5% 0.1%
+[libx264 @ 0x7ff019180] i16 v,h,dc,p:  2% 67%  2% 29%
+[libx264 @ 0x7ff019180] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu:  6% 45% 12%  3%  5%  3% 12%  3% 11%
+[libx264 @ 0x7ff019180] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 13% 40%  9%  5%  7%  5% 10%  4%  6%
+[libx264 @ 0x7ff019180] i8c dc,h,v,p: 31% 52%  6% 10%
+[libx264 @ 0x7ff019180] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0x7ff019180] ref P L0: 62.7%  9.8% 19.2%  8.4%
+[libx264 @ 0x7ff019180] ref B L0: 93.2%  4.9%  2.0%
+[libx264 @ 0x7ff019180] ref B L1: 96.8%  3.2%
+[libx264 @ 0x7ff019180] kb/s:2181.20
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-c.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 16226 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3876x2136, 16090 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[h264 @ 0x96d021880] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0x96d021880] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[libx264 @ 0x96d021180] using cpu capabilities: ARMv8 NEON DotProd I8MM
+[libx264 @ 0x96d021180] profile High, level 3.1, 4:2:0, 8-bit
+[libx264 @ 0x96d021180] 264 - core 165 r3222 b35605a - H.264/MPEG-4 AVC codec - Copyleft 2003-2025 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=12 lookahead_threads=2 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=24 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=24.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'clip-c-720.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, progressive), 1280x706, q=2-31, 24 fps, 12288 tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 libx264
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=   22 fps=0.0 q=29.0 size=       0KiB time=00:00:00.83 bitrate=   0.5kbits/s speed=1.65x elapsed=0:00:00.50    frame=   78 fps= 78 q=29.0 size=     256KiB time=00:00:03.16 bitrate= 662.4kbits/s speed=3.15x elapsed=0:00:01.00    frame=  129 fps= 85 q=29.0 size=     512KiB time=00:00:05.29 bitrate= 792.7kbits/s speed= 3.5x elapsed=0:00:01.51    [mp4 @ 0x96d01f700] Starting second pass: moving the moov atom to the beginning of the file
+[out#0/mp4 @ 0x96cc60300] video:954KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.325084%
+frame=  193 fps=106 q=-1.0 Lsize=     957KiB time=00:00:07.95 bitrate= 985.6kbits/s speed=4.36x elapsed=0:00:01.82    
+[libx264 @ 0x96d021180] frame I:1     Avg QP:23.35  size: 70064
+[libx264 @ 0x96d021180] frame P:48    Avg QP:23.31  size: 12310
+[libx264 @ 0x96d021180] frame B:144   Avg QP:27.37  size:  2192
+[libx264 @ 0x96d021180] consecutive B-frames:  0.5%  0.0%  0.0% 99.5%
+[libx264 @ 0x96d021180] mb I  I16..4: 12.8% 68.2% 19.0%
+[libx264 @ 0x96d021180] mb P  I16..4:  1.0%  5.3%  0.3%  P16..4: 31.0% 14.9%  5.8%  0.0%  0.0%    skip:41.7%
+[libx264 @ 0x96d021180] mb B  I16..4:  0.0%  0.1%  0.0%  B16..8: 18.2%  2.1%  0.5%  direct: 1.2%  skip:77.9%  L0:29.8% L1:61.8% BI: 8.5%
+[libx264 @ 0x96d021180] 8x8 transform intra:78.1% inter:86.6%
+[libx264 @ 0x96d021180] coded y,uvDC,uvAC intra: 73.6% 89.4% 48.8% inter: 8.7% 10.8% 0.2%
+[libx264 @ 0x96d021180] i16 v,h,dc,p:  1% 72%  1% 26%
+[libx264 @ 0x96d021180] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu:  4% 48%  8%  3%  5%  3% 12%  3% 13%
+[libx264 @ 0x96d021180] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 16% 40%  9%  4%  7%  5% 10%  4%  7%
+[libx264 @ 0x96d021180] i8c dc,h,v,p: 29% 56%  6%  9%
+[libx264 @ 0x96d021180] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0x96d021180] ref P L0: 64.6% 13.1% 15.3%  7.0%
+[libx264 @ 0x96d021180] ref B L0: 95.2%  3.5%  1.3%
+[libx264 @ 0x96d021180] ref B L1: 97.5%  2.5%
+[libx264 @ 0x96d021180] kb/s:971.54
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-c.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 16226 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3876x2136, 16090 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> vp9 (libvpx-vp9))
+Press [q] to stop, [?] for help
+[h264 @ 0x935041c00] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0x935041c00] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[libvpx-vp9 @ 0x935041180] v1.16.0
+Output #0, webm, to 'clip-c-1080.webm':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: vp9, yuv420p(tv, progressive), 1920x1058, q=2-31, 24 fps, 1k tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 libvpx-vp9
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    6 fps=0.0 q=31.0 size=       1KiB time=00:00:00.25 bitrate=  19.1kbits/s speed=0.492x elapsed=0:00:00.50    frame=   15 fps= 15 q=29.0 size=       1KiB time=00:00:00.62 bitrate=   7.7kbits/s speed=0.617x elapsed=0:00:01.01    frame=   23 fps= 15 q=29.0 size=       1KiB time=00:00:00.95 bitrate=   5.0kbits/s speed=0.632x elapsed=0:00:01.51    frame=   32 fps= 16 q=31.0 size=       1KiB time=00:00:01.33 bitrate=   3.6kbits/s speed=0.66x elapsed=0:00:02.02    frame=   40 fps= 16 q=31.0 size=       1KiB time=00:00:01.66 bitrate=   2.9kbits/s speed=0.66x elapsed=0:00:02.52    frame=   49 fps= 16 q=19.0 size=       1KiB time=00:00:02.04 bitrate=   2.3kbits/s speed=0.674x elapsed=0:00:03.02    frame=   57 fps= 16 q=19.0 size=       1KiB time=00:00:02.37 bitrate=   2.0kbits/s speed=0.672x elapsed=0:00:03.53    frame=   66 fps= 16 q=31.0 size=       1KiB time=00:00:02.75 bitrate=   1.7kbits/s speed=0.681x elapsed=0:00:04.03    frame=   75 fps= 17 q=29.0 size=       1KiB time=00:00:03.12 bitrate=   1.5kbits/s speed=0.689x elapsed=0:00:04.53    frame=   82 fps= 16 q=31.0 size=       1KiB time=00:00:03.41 bitrate=   1.4kbits/s speed=0.678x elapsed=0:00:05.03    frame=   90 fps= 16 q=31.0 size=       1KiB time=00:00:03.75 bitrate=   1.3kbits/s speed=0.676x elapsed=0:00:05.54    frame=   92 fps= 15 q=31.0 size=       1KiB time=00:00:03.83 bitrate=   1.2kbits/s speed=0.632x elapsed=0:00:06.06    frame=   98 fps= 15 q=31.0 size=       1KiB time=00:00:04.08 bitrate=   1.2kbits/s speed=0.622x elapsed=0:00:06.56    frame=  104 fps= 15 q=31.0 size=       1KiB time=00:00:04.33 bitrate=   1.1kbits/s speed=0.612x elapsed=0:00:07.07    frame=  111 fps= 15 q=19.0 size=       1KiB time=00:00:04.62 bitrate=   1.0kbits/s speed=0.61x elapsed=0:00:07.58    frame=  118 fps= 15 q=31.0 size=       1KiB time=00:00:04.91 bitrate=   1.0kbits/s speed=0.608x elapsed=0:00:08.08    frame=  124 fps= 14 q=31.0 size=     768KiB time=00:00:05.16 bitrate=1217.7kbits/s speed=0.601x elapsed=0:00:08.59    frame=  131 fps= 14 q=29.0 size=     768KiB time=00:00:05.45 bitrate=1152.6kbits/s speed= 0.6x elapsed=0:00:09.09    frame=  141 fps= 15 q=26.0 size=     768KiB time=00:00:05.87 bitrate=1070.9kbits/s speed=0.612x elapsed=0:00:09.60    frame=  150 fps= 15 q=31.0 size=     768KiB time=00:00:06.25 bitrate=1006.6kbits/s speed=0.619x elapsed=0:00:10.10    frame=  154 fps= 15 q=31.0 size=     768KiB time=00:00:06.41 bitrate= 980.5kbits/s speed=0.605x elapsed=0:00:10.60    frame=  158 fps= 14 q=31.0 size=     768KiB time=00:00:06.58 bitrate= 955.7kbits/s speed=0.592x elapsed=0:00:11.11    frame=  166 fps= 14 q=31.0 size=     768KiB time=00:00:06.91 bitrate= 909.6kbits/s speed=0.595x elapsed=0:00:11.61    frame=  169 fps= 14 q=19.0 size=     768KiB time=00:00:07.04 bitrate= 893.5kbits/s speed=0.581x elapsed=0:00:12.12    frame=  169 fps= 13 q=19.0 size=     768KiB time=00:00:07.04 bitrate= 893.5kbits/s speed=0.558x elapsed=0:00:12.62    frame=  169 fps= 13 q=19.0 size=     768KiB time=00:00:07.04 bitrate= 893.5kbits/s speed=0.536x elapsed=0:00:13.13    [out#0/webm @ 0x934c40300] video:1480KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.134168%
+frame=  193 fps= 15 q=19.0 Lsize=    1482KiB time=00:00:08.04 bitrate=1510.2kbits/s speed=0.607x elapsed=0:00:13.24    
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-c.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 16226 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3876x2136, 16090 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> vp9 (libvpx-vp9))
+Press [q] to stop, [?] for help
+[h264 @ 0x898c39c00] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0x898c39c00] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[libvpx-vp9 @ 0x898c39180] v1.16.0
+Output #0, webm, to 'clip-c-720.webm':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: vp9, yuv420p(tv, progressive), 1280x706, q=2-31, 24 fps, 1k tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 libvpx-vp9
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=   10 fps=0.0 q=33.0 size=       1KiB time=00:00:00.41 bitrate=  11.5kbits/s speed=0.825x elapsed=0:00:00.50    frame=   24 fps= 24 q=33.0 size=       1KiB time=00:00:01.00 bitrate=   4.8kbits/s speed=0.987x elapsed=0:00:01.01    frame=   40 fps= 26 q=33.0 size=       1KiB time=00:00:01.66 bitrate=   2.9kbits/s speed= 1.1x elapsed=0:00:01.51    frame=   57 fps= 28 q=22.0 size=       1KiB time=00:00:02.37 bitrate=   2.0kbits/s speed=1.17x elapsed=0:00:02.02    frame=   72 fps= 28 q=33.0 size=       1KiB time=00:00:03.00 bitrate=   1.6kbits/s speed=1.19x elapsed=0:00:02.52    frame=   88 fps= 29 q=33.0 size=       1KiB time=00:00:03.66 bitrate=   1.3kbits/s speed=1.21x elapsed=0:00:03.03    frame=  103 fps= 29 q=31.0 size=       1KiB time=00:00:04.29 bitrate=   1.1kbits/s speed=1.21x elapsed=0:00:03.53    frame=  116 fps= 29 q=33.0 size=       1KiB time=00:00:04.83 bitrate=   1.0kbits/s speed= 1.2x elapsed=0:00:04.04    frame=  131 fps= 29 q=31.0 size=     256KiB time=00:00:05.45 bitrate= 384.2kbits/s speed= 1.2x elapsed=0:00:04.55    frame=  147 fps= 29 q=31.0 size=     256KiB time=00:00:06.12 bitrate= 342.4kbits/s speed=1.21x elapsed=0:00:05.05    frame=  153 fps= 28 q=22.0 size=     256KiB time=00:00:06.37 bitrate= 329.0kbits/s speed=1.15x elapsed=0:00:05.56    frame=  164 fps= 27 q=33.0 size=     256KiB time=00:00:06.83 bitrate= 306.9kbits/s speed=1.13x elapsed=0:00:06.06    frame=  169 fps= 26 q=22.0 size=     256KiB time=00:00:07.04 bitrate= 297.8kbits/s speed=1.07x elapsed=0:00:06.57    frame=  169 fps= 24 q=22.0 size=     256KiB time=00:00:07.04 bitrate= 297.8kbits/s speed=0.994x elapsed=0:00:07.08    [out#0/webm @ 0x89904c300] video:799KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.247267%
+frame=  193 fps= 27 q=22.0 Lsize=     801KiB time=00:00:08.04 bitrate= 816.3kbits/s speed=1.13x elapsed=0:00:07.14    
+ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with Apple clang version 21.0.0 (clang-2100.0.123.102)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60. 26.101 / 60. 26.101
+  libavcodec     62. 28.101 / 62. 28.101
+  libavformat    62. 12.101 / 62. 12.101
+  libavdevice    62.  3.101 / 62.  3.101
+  libavfilter    11. 14.101 / 11. 14.101
+  libswscale      9.  5.101 /  9.  5.101
+  libswresample   6.  3.101 /  6.  3.101
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'clip-c.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.04, start: 0.000000, bitrate: 16226 kb/s
+  Stream #0:0[0x1](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+  Stream #0:1[0x2](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 3876x2136, 16090 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc60.31.102 h264_slapi
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> mjpeg (native))
+Press [q] to stop, [?] for help
+[h264 @ 0xba8c59880] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0xba8c59880] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+Output #0, image2, to 'clip-c-poster.jpg':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: mjpeg, yuv420p(pc, progressive), 1600x882, q=2-31, 200 kb/s, 24 fps, 24 tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 mjpeg
+      handler_name    : VideoHandler
+    Side data:
+      CPB properties: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: N/A
+[image2 @ 0xba8c2b700] The specified filename 'clip-c-poster.jpg' does not contain an image sequence pattern or a pattern is invalid.
+[image2 @ 0xba8c2b700] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.
+[out#0/image2 @ 0xba902c300] video:133KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=3.0 Lsize=N/A time=00:00:00.04 bitrate=N/A dup=1 drop=0 speed=0.442x elapsed=0:00:00.09    
+==== DONE ====
+-rw-r--r--@ 1 vincentla  staff  5365221 Jun 13 11:50 clip-a-1080.mp4
+-rw-r--r--@ 1 vincentla  staff  5407589 Jun 13 11:51 clip-a-1080.webm
+-rw-r--r--@ 1 vincentla  staff  2540570 Jun 13 11:50 clip-a-720.mp4
+-rw-r--r--@ 1 vincentla  staff  2670327 Jun 13 11:51 clip-a-720.webm
+-rw-r--r--@ 1 vincentla  staff   212950 Jun 13 11:51 clip-a-poster.jpg
+-rw-r--r--@ 1 vincentla  staff  6515811 Jun 13 11:51 clip-b-1080.mp4
+-rw-r--r--@ 1 vincentla  staff  6454757 Jun 13 11:51 clip-b-1080.webm
+-rw-r--r--@ 1 vincentla  staff  3009878 Jun 13 11:51 clip-b-720.mp4
+-rw-r--r--@ 1 vincentla  staff  3349346 Jun 13 11:51 clip-b-720.webm
+-rw-r--r--@ 1 vincentla  staff   207515 Jun 13 11:51 clip-b-poster.jpg
+-rw-r--r--@ 1 vincentla  staff  2196459 Jun 13 11:51 clip-c-1080.mp4
+-rw-r--r--@ 1 vincentla  staff  1518039 Jun 13 11:52 clip-c-1080.webm
+-rw-r--r--@ 1 vincentla  staff   980463 Jun 13 11:51 clip-c-720.mp4
+-rw-r--r--@ 1 vincentla  staff   820573 Jun 13 11:52 clip-c-720.webm
+-rw-r--r--@ 1 vincentla  staff   136471 Jun 13 11:52 clip-c-poster.jpg

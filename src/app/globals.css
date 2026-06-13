@@ -1,26 +1,289 @@
 @import "tailwindcss";
 
+/* =========================================================
+   HALEN — quiet Aegean luxury
+   Three notes only: ultramarine + turquoise (imagery),
+   high-key salt white (canvas), navy ink (type).
+   ========================================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --salt: #fcfdfd;        /* high-key salt white canvas */
+  --salt-wash: #f3f6f7;   /* faint section wash */
+  --ink: #16263f;         /* navy ink — type */
+  --ink-soft: #41566f;    /* secondary type */
+  --ink-faint: #8a9bb0;   /* labels, meta */
+  --line: rgba(22, 38, 63, 0.10);
+
+  --ultramarine: #1b3a8f;
+  --aegean: #1f6f9a;
+  --turquoise: #46b6c4;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-salt: var(--salt);
+  --color-salt-wash: var(--salt-wash);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-ultramarine: var(--ultramarine);
+  --color-aegean: var(--aegean);
+  --color-turquoise: var(--turquoise);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /* Lenis owns scroll; keep CSS smooth off to avoid fighting it */
+  scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%; /* stop iOS auto-inflating type */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--salt);
+  color: var(--ink);
+  font-family: var(--font-sans), "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent; /* no grey flash on tap */
+  margin: 0;
+}
+
+/* Comfortable, invisible tap targets (>=44px) without changing layout */
+.tap {
+  position: relative;
+}
+.tap::after {
+  content: "";
+  position: absolute;
+  inset: -12px -10px;
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--aegean);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--turquoise);
+  color: var(--salt);
+}
+
+/* ---- Type primitives ---------------------------------- */
+
+.serif {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.05;
+}
+
+/* Engraved small-caps labels — the "SEA SALT / FLEUR DE SEL" voice */
+.label {
+  font-family: var(--font-sans), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+.rule {
+  width: 1px;
+  height: 4.5rem;
+  background: var(--line);
+}
+
+/* ---- Hero water — slow Aegean drift -------------------- */
+/* Nature in motion, product as the calm center.
+   The water moves; everything else stays perfectly still. */
+
+.water {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 20% 12%, var(--turquoise) 0%, transparent 55%),
+    radial-gradient(120% 110% at 85% 28%, var(--aegean) 0%, transparent 60%),
+    linear-gradient(165deg, var(--ultramarine) 0%, var(--aegean) 48%, var(--turquoise) 100%);
+  background-size: 200% 200%, 220% 220%, 170% 170%;
+  animation: drift 30s ease-in-out infinite;
+  filter: saturate(1.04);
+}
+
+.water::after {
+  /* high-key Mediterranean light pooling on the surface */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(80% 55% at 50% -10%, rgba(252, 253, 253, 0.6) 0%, transparent 60%);
+  mix-blend-mode: screen;
+  animation: shimmer 20s ease-in-out infinite;
+}
+
+@keyframes drift {
+  0%, 100% { background-position: 0% 50%, 100% 30%, 0% 0%; }
+  50%      { background-position: 100% 50%, 0% 70%, 100% 100%; }
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.7; transform: translateY(0); }
+  50%      { opacity: 1;   transform: translateY(1.5%); }
+}
+
+/* ---- Cinematic video stage (A -> B -> C) -------------- */
+
+:root {
+  --cine-fade: 1000ms;
+  --film: cubic-bezier(0.22, 1, 0.36, 1); /* expo-out, filmic */
+}
+
+.cine-stage {
+  background: var(--ultramarine); /* on-brand fallback before first paint */
+}
+
+.cine-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  opacity: 0;
+  transition: opacity var(--cine-fade) var(--film);
+  pointer-events: none;
+}
+.cine-video.show {
+  opacity: 1;
+}
+
+/* Sculpted scrim — top band for nav, soft pool behind the headline.
+   No bottom darkening; the product seam handles the lower edge. */
+.cine-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(72% 48% at 50% 50%, rgba(11, 27, 51, 0.30) 0%, rgba(11, 27, 51, 0) 72%),
+    linear-gradient(180deg, rgba(11, 27, 51, 0.34) 0%, rgba(11, 27, 51, 0) 26%);
+}
+
+/* Film grain — ultra-subtle, unifies layers, prevents banding */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* Grounding seam — melts the film into the editorial white below */
+.cine-seam {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 24vh;
+  background: linear-gradient(180deg, rgba(252, 253, 253, 0) 0%, var(--salt) 100%);
+  pointer-events: none;
+}
+
+.cine-overlay {
+  transition: opacity 1000ms var(--film);
+}
+
+/* Breathing scroll cue */
+.scroll-line {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(180deg, rgba(252, 253, 253, 0.8), rgba(252, 253, 253, 0));
+  transform-origin: top;
+  animation: scrollPulse 2.6s var(--film) infinite;
+}
+@keyframes scrollPulse {
+  0%   { transform: scaleY(0.3); opacity: 0.2; }
+  45%  { transform: scaleY(1);   opacity: 0.9; }
+  100% { transform: scaleY(0.3); opacity: 0.2; transform-origin: bottom; }
+}
+
+/* ---- Scroll-aware nav --------------------------------- */
+
+.site-nav {
+  transition: background 500ms var(--film), backdrop-filter 500ms var(--film),
+    border-color 500ms var(--film);
+  border-bottom: 1px solid transparent;
+}
+.nav-ink {
+  color: var(--salt);
+  transition: color 500ms var(--film);
+}
+.nav-link {
+  position: relative;
+  transition: opacity 300ms ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 420ms var(--film);
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+.site-nav.nav--solid {
+  background: rgba(252, 253, 253, 0.72);
+  backdrop-filter: saturate(1.1) blur(14px);
+  -webkit-backdrop-filter: saturate(1.1) blur(14px);
+  border-bottom-color: var(--line);
+}
+.site-nav.nav--solid .nav-ink {
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --cine-fade: 1ms; }
+  .cine-video { transition: none; }
+  .scroll-line { animation: none; }
+}
+
+/* Mobile: the drifting water (animates background-position = constant
+   repaint) and the blend-mode grain are invisible behind full-bleed video
+   yet costly to composite on a phone. Drop both; keep a static gradient. */
+@media (max-width: 767px) {
+  .water { animation: none; }
+  .water::after { animation: none; opacity: 0.6; }
+  .grain { display: none; }
+}
+
+/* ---- Scroll-entry reveal ------------------------------ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .water, .water::after { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
 }
