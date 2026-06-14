@@ -222,36 +222,209 @@ body {
   text-shadow: 0 1px 30px rgba(11, 27, 51, 0.45), 0 1px 3px rgba(11, 27, 51, 0.32);
 }
 
-/* Reserve CTA — a refined glass pill. Discoverable, premium, not ecommerce. */
-.cta-reserve {
+/* Soft contrast pool behind the centred hero copy. z-index below the text
+   (which sits at auto/0) so it darkens the film, never the words. */
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* radial pool behind the headline + a bottom anchor so the subhead, price,
+     and CTA stay legible over the bright salt — keeps the sky airy. */
+  background:
+    radial-gradient(
+      95% 55% at 50% 40%,
+      rgba(11, 27, 51, 0.36) 0%,
+      rgba(11, 27, 51, 0) 68%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(11, 27, 51, 0) 28%,
+      rgba(11, 27, 51, 0.3) 60%,
+      rgba(11, 27, 51, 0.52) 100%
+    );
+}
+
+/* ---- Reserve CTAs — one primary action, three contexts -------------
+   Always price-bearing, premium, never an ecommerce button. */
+[class*="cta-reserve--"] {
   display: inline-flex;
   align-items: center;
-  gap: 0.65em;
+  gap: 0.55em;
   font-family: var(--font-sans), sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.2em;
   font-size: 0.72rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 420ms var(--film), border-color 420ms var(--film),
+    color 420ms var(--film), transform 420ms var(--film), box-shadow 420ms var(--film);
+}
+[class*="cta-reserve--"] .cta-sep {
+  opacity: 0.45;
+}
+[class*="cta-reserve--"] .cta-price {
+  font-variant-numeric: tabular-nums;
+}
+[class*="cta-reserve--"] .cta-arrow {
+  transition: transform 420ms var(--film);
+}
+[class*="cta-reserve--"]:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* glass — over the cinematic film */
+.cta-reserve--glass {
   color: var(--salt);
-  padding: 1rem 2.5rem;
+  padding: 1rem 2.3rem;
   border: 1px solid rgba(252, 253, 253, 0.62);
   background: rgba(252, 253, 253, 0.1);
   backdrop-filter: blur(10px) saturate(1.15);
   -webkit-backdrop-filter: blur(10px) saturate(1.15);
-  border-radius: 3px;
   box-shadow: 0 12px 44px -18px rgba(11, 27, 51, 0.65);
-  transition: background 450ms var(--film), border-color 450ms var(--film),
-    transform 450ms var(--film);
 }
-.cta-reserve:hover {
+.cta-reserve--glass:hover {
   background: rgba(252, 253, 253, 0.2);
   border-color: var(--salt);
   transform: translateY(-1px);
 }
-.cta-reserve .arrow {
-  transition: transform 450ms var(--film);
+
+/* ink — solid, on the editorial white body */
+.cta-reserve--ink {
+  color: var(--salt);
+  background: var(--ink);
+  padding: 1.1rem 2.5rem;
+  border: 1px solid var(--ink);
 }
-.cta-reserve:hover .arrow {
-  transform: translateX(4px);
+.cta-reserve--ink:hover {
+  background: #1d3252;
+  transform: translateY(-1px);
+  box-shadow: 0 18px 44px -22px rgba(22, 38, 63, 0.6);
+}
+
+/* sticky — the persistent mobile bar */
+.cta-reserve--sticky {
+  color: var(--salt);
+  background: var(--ink);
+  padding: 0.95rem 1.6rem;
+  justify-content: center;
+  white-space: nowrap;
+  flex: none;
+}
+
+/* ---- Reservation modal --------------------------------------------- */
+.reserve-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+.reserve-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 27, 51, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: reserveFade 380ms var(--film);
+}
+.reserve-card {
+  position: relative;
+  width: 100%;
+  max-width: 30rem;
+  background: var(--salt);
+  padding: clamp(2rem, 6vw, 3.25rem);
+  border-radius: 4px;
+  box-shadow: 0 40px 120px -40px rgba(11, 27, 51, 0.6);
+  animation: reserveRise 500ms var(--film);
+}
+.reserve-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 1rem;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--ink-faint);
+  transition: color 300ms var(--film);
+}
+.reserve-close:hover {
+  color: var(--ink);
+}
+.reserve-submit {
+  font-family: var(--font-sans), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.7rem;
+  color: var(--ink);
+  padding-bottom: 0.75rem;
+  white-space: nowrap;
+  transition: opacity 300ms var(--film);
+}
+.reserve-submit:hover {
+  opacity: 0.55;
+}
+@keyframes reserveFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes reserveRise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---- Sticky mobile CTA --------------------------------------------- */
+.sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1.1rem calc(0.8rem + env(safe-area-inset-bottom));
+  background: rgba(252, 253, 253, 0.92);
+  backdrop-filter: saturate(1.1) blur(14px);
+  -webkit-backdrop-filter: saturate(1.1) blur(14px);
+  border-top: 1px solid var(--line);
+  transform: translateY(130%);
+  transition: transform 500ms var(--film);
+}
+.sticky-cta.is-visible {
+  transform: none;
+}
+.sticky-cta-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ---- Trust markers — claims, not badges ---------------------------- */
+.trust-markers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.trust-marker {
+  font-family: var(--font-sans), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  font-size: 0.62rem;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 0.5rem 0.9rem;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reserve-backdrop,
+  .reserve-card {
+    animation: none;
+  }
 }
 
 /* Discrete graceful fade — used only by the product overlay as it rises

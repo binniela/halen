@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import ReserveButton from "./_components/reserve-button";
+import { track } from "@/lib/analytics";
+import { PRODUCT } from "@/lib/site";
 
 /**
  * Responsive, dual-codec sources: WebM/VP9 first (smaller), H.264 MP4
@@ -51,6 +54,8 @@ export default function CinematicStage() {
     const cue = cueRef.current!;
     const product = productRef.current!;
     const sentinel = sentinelRef.current!;
+
+    track("hero_viewed");
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
@@ -234,14 +239,30 @@ export default function CinematicStage() {
         {/* HERO overlay (over A) */}
         <div
           ref={heroRef}
-          className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-salt px-7"
+          className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-salt px-6"
         >
-          <p className="label !text-salt/75 !tracking-[0.32em] sm:!tracking-[0.42em] mb-5 sm:mb-7 hero-text-shadow">
-            Aegean Sea Salt
+          {/* soft pool of contrast behind the centred copy */}
+          <div className="hero-veil" aria-hidden />
+          <p className="label !text-salt/80 !tracking-[0.32em] sm:!tracking-[0.42em] mb-4 sm:mb-6 hero-text-shadow">
+            Aegean Fleur de Sel
           </p>
-          <h1 className="serif text-[clamp(2.6rem,9vw,7.5rem)] font-medium leading-[1.0] sm:leading-[0.98] text-balance max-w-[12ch] sm:max-w-[14ch] hero-text-shadow">
-            From still water, a quiet harvest.
+          <h1 className="serif text-[clamp(2.5rem,8.4vw,6.8rem)] font-medium leading-[1.02] sm:leading-[0.98] text-balance max-w-[12ch] hero-text-shadow">
+            A pinch changes everything.
           </h1>
+          <p className="text-salt/90 mt-5 sm:mt-7 max-w-[32ch] text-[clamp(0.95rem,2.3vw,1.15rem)] leading-relaxed hero-text-shadow">
+            Hand-harvested fleur de sel from the Greek coast.
+          </p>
+          <p className="label !text-salt/95 !tracking-[0.3em] !text-[0.78rem] mt-5 sm:mt-7 hero-text-shadow">
+            First Harvest · {PRODUCT.priceDisplay}
+          </p>
+          <div className="mt-6">
+            <ReserveButton
+              source="hero"
+              variant="glass"
+              label="Reserve the First Harvest"
+              showPrice={false}
+            />
+          </div>
         </div>
 
         {/* scroll cue — a single quiet line that draws downward, no label */}
@@ -261,14 +282,19 @@ export default function CinematicStage() {
         >
           {/* lower-third contrast vignette — anchors the copy below the jar */}
           <div className="cine-product-scrim" aria-hidden />
-          <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-5 pb-[7vh] sm:pb-[8vh] px-6 text-center">
+          <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-4 pb-[7vh] sm:pb-[8vh] px-6 text-center">
             <p className="serif italic text-[clamp(1.5rem,3.6vw,2.6rem)] text-salt max-w-[18ch] leading-snug text-balance hero-text-shadow">
               Hand-harvested from the Greek coast.
             </p>
-            <a href="#shop" className="cta-reserve tap mt-1">
-              Reserve a jar
-              <span className="arrow" aria-hidden>→</span>
-            </a>
+            <p className="label !text-salt/80 !tracking-[0.3em] hero-text-shadow">
+              First Harvest · {PRODUCT.priceDisplay}
+            </p>
+            <ReserveButton
+              source="product_overlay"
+              variant="glass"
+              label="Reserve the First Harvest"
+              showPrice={false}
+            />
           </div>
         </div>
       </div>

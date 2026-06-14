@@ -19,12 +19,47 @@ export const SITE_LOCALE = "en_GB";
 export const PRODUCT = {
   name: "Halen Fleur de Sel",
   sku: "HALEN-FDS-125",
-  price: "28.00",
-  currency: "EUR",
+  price: "24.00",
+  currency: "USD",
+  priceDisplay: "$24",
   weightGrams: 125,
+  weightDisplay: "125g · 4.4oz",
+  origin: "Aegean coast, Greece",
   // The jar still from the cinematic stage doubles as the product image.
   image: "/videos/clip-c-poster.jpg",
 } as const;
+
+/** Trust markers shown on the product section — claims, not badges. */
+export const TRUST_MARKERS = [
+  "Single-Origin",
+  "Hand Harvested",
+  "Greek Coast",
+  "Limited First Harvest",
+] as const;
+
+/**
+ * Real customer testimonials. NOTE: the `name` attributions below are
+ * placeholders inserted during the build — replace each with the actual
+ * customer's real name (and, if you have it, a city) before publishing so the
+ * real quotes are correctly attributed.
+ */
+export const TESTIMONIALS = [
+  {
+    quote:
+      "I didn't think salt could make this much of a difference until I tried Halen. The texture is what surprised me most — light, delicate flakes that add the perfect crunch without overpowering the food. It's become the finishing touch on everything from steaks to sourdough.",
+    name: "Maya", // TODO: replace with real customer name
+  },
+  {
+    quote:
+      "Every detail feels premium. From the packaging to the crystal structure itself, Halen feels more like a luxury pantry staple than a seasoning. Guests constantly ask what makes the food taste so good.",
+    name: "James", // TODO: replace with real customer name
+  },
+  {
+    quote:
+      "I originally tried Halen as a gift for someone and immediately wanted a jar for myself. It looks beautiful on the counter and instantly elevates even the simplest meals. One of those rare things that actually exceeds expectations.",
+    name: "Sofia", // TODO: replace with real customer name
+  },
+] as const;
 
 /** Absolute URL helper. */
 export const abs = (path = "/") =>
@@ -58,6 +93,6 @@ export const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How much is it, and when does it ship?",
-    a: "A 125g jar is €28. The first harvest is small and reserved by waitlist — add your email to reserve a jar and we will write to you once the first jars are sealed. There is no payment until it ships.",
+    a: "A 125g jar is $24. The inaugural harvest is small and reserved in advance — add your email to reserve a jar and we will write to you the moment reservations open. There is no payment now; nothing is charged until the first jars ship.",
   },
 ];

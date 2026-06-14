@@ -1,10 +1,13 @@
 import Reveal from "./reveal";
 import SiteNav from "./site-nav";
 import CinematicStage from "./cinematic-stage";
-import Waitlist from "./waitlist";
 import SiteFooter from "./site-footer";
+import ReserveButton from "./_components/reserve-button";
+import ReservationModal from "./_components/reservation-modal";
+import StickyCta from "./_components/sticky-cta";
+import TrackOnView from "./_components/track-on-view";
 import Link from "next/link";
-import { FAQS, PRODUCT, SITE_NAME, abs } from "@/lib/site";
+import { FAQS, PRODUCT, TRUST_MARKERS, TESTIMONIALS, SITE_NAME, abs } from "@/lib/site";
 import { articlesByDate } from "@/content/journal";
 
 // One year out — keeps the Product offer's priceValidUntil from going stale.
@@ -102,8 +105,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---- The Salt — editorial product moment -------------------- */}
+      {/* ---- The Product — name, price, proof, action -------------- */}
       <section id="salt" className="bg-salt-wash">
+        <TrackOnView event="product_viewed" />
         <div className="mx-auto max-w-[1400px] px-7 sm:px-8 md:px-14 py-[clamp(4.5rem,14vh,10rem)] grid md:grid-cols-2 gap-10 md:gap-24 items-center">
           {/* real product film, framed editorially */}
           <div className="reveal order-2 md:order-1 flex justify-center">
@@ -127,26 +131,38 @@ export default function Home() {
           </div>
 
           <div className="reveal order-1 md:order-2 max-w-md">
-            <p className="label mb-6">The Salt</p>
-            <h2 className="serif text-[clamp(2.2rem,5vw,3.4rem)] text-ink mb-8 leading-[1.04] text-balance">
-              The first crystals to form, lifted by hand.
+            <p className="label mb-5">The First Harvest</p>
+            <h2 className="serif text-[clamp(2.2rem,5vw,3.3rem)] text-ink leading-[1.04] text-balance">
+              Halen Fleur de Sel
             </h2>
-            <p className="text-ink-soft mb-5">
-              Fleur de sel rises as a fragile bloom on the surface of the salt
-              pans at dusk. It is raked once, gently, and never touched by
-              machine. The crystals stay light, flaked, faintly briny.
-            </p>
-            <p className="text-ink-soft">
-              Finish a tomato, a fillet, a square of dark chocolate. A pinch is
-              the whole point.
+
+            <div className="flex items-baseline gap-4 mt-5 mb-6">
+              <span className="serif text-ink text-[clamp(2rem,4.4vw,2.6rem)] leading-none">
+                {PRODUCT.priceDisplay}
+              </span>
+              <span className="label !text-ink-faint !tracking-[0.18em]">
+                {PRODUCT.weightDisplay}
+              </span>
+            </div>
+
+            <p className="text-ink-soft mb-7">
+              Hand-harvested fleur de sel from the Greek coast. Delicate, flaked
+              crystals with a clean mineral finish — made for steaks, vegetables,
+              seafood, and desserts.
             </p>
 
-            <dl className="mt-10 border-t border-line text-[0.9rem]">
+            <ul className="trust-markers mb-9">
+              {TRUST_MARKERS.map((m) => (
+                <li key={m} className="trust-marker">{m}</li>
+              ))}
+            </ul>
+
+            <dl className="border-t border-line text-[0.9rem]">
               {[
                 ["Origin", "Aegean coast, Greece"],
                 ["Harvest", "By hand, at dusk"],
                 ["Composition", "Sea salt — nothing added"],
-                ["Use", "A final pinch, off the heat"],
+                ["Jar", PRODUCT.weightDisplay],
               ].map(([k, v]) => (
                 <div
                   key={k}
@@ -157,6 +173,14 @@ export default function Home() {
                 </div>
               ))}
             </dl>
+
+            <div className="mt-9">
+              <ReserveButton
+                source="product_section"
+                variant="ink"
+                className="w-full sm:w-auto justify-center sm:justify-start"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -201,6 +225,32 @@ export default function Home() {
               </p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ---- From the First Harvest — editorial social proof ------- */}
+      <section id="voices" className="border-t border-line bg-salt-wash">
+        <div className="mx-auto max-w-[1400px] px-7 sm:px-8 md:px-14 py-[clamp(4.5rem,14vh,10rem)]">
+          <div className="reveal text-center mb-14 sm:mb-20">
+            <p className="label mb-5">From the First Harvest</p>
+            <h2 className="serif text-[clamp(2rem,4.2vw,3rem)] text-ink leading-[1.08]">
+              A few words from early customers.
+            </h2>
+          </div>
+
+          <div className="reveal grid md:grid-cols-3 gap-x-12 lg:gap-x-16 gap-y-14">
+            {TESTIMONIALS.map((t) => (
+              <figure key={t.name} className="flex flex-col">
+                <span className="serif text-ink-faint text-5xl leading-none mb-4" aria-hidden>
+                  &ldquo;
+                </span>
+                <blockquote className="serif text-[clamp(1.15rem,1.55vw,1.4rem)] text-ink leading-[1.5]">
+                  {t.quote}
+                </blockquote>
+                <figcaption className="label !text-ink-faint mt-7">— {t.name}</figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -302,8 +352,24 @@ export default function Home() {
             </div>
 
             <div id="reserve" className="md:col-span-6 md:col-start-8 md:pt-3">
-              <p className="label !text-ink-soft mb-8">Fleur de sel · 125g · €28</p>
-              <Waitlist />
+              <p className="label !text-ink-soft mb-3">Halen Fleur de Sel</p>
+              <div className="flex items-baseline gap-4 mb-8">
+                <span className="serif text-ink text-[clamp(2.3rem,5vw,3.1rem)] leading-none">
+                  {PRODUCT.priceDisplay}
+                </span>
+                <span className="label !text-ink-faint !tracking-[0.18em]">
+                  {PRODUCT.weightDisplay}
+                </span>
+              </div>
+              <ReserveButton
+                source="reserve_section"
+                variant="ink"
+                className="w-full sm:w-auto justify-center sm:justify-start"
+              />
+              <p className="label !text-[0.62rem] !tracking-[0.2em] !text-ink-faint mt-6 max-w-[40ch]">
+                No payment now. One quiet note when reservations open — first
+                access, before anyone else.
+              </p>
             </div>
           </div>
         </div>
@@ -311,6 +377,10 @@ export default function Home() {
 
       {/* ---- Footer ------------------------------------------------- */}
       <SiteFooter />
+
+      {/* Fake-door mechanics: shared reservation modal + persistent mobile CTA */}
+      <ReservationModal />
+      <StickyCta />
     </>
   );
 }
