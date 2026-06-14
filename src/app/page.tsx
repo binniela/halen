@@ -1,13 +1,88 @@
 import Reveal from "./reveal";
-import SmoothScroll from "./smooth-scroll";
 import SiteNav from "./site-nav";
 import CinematicStage from "./cinematic-stage";
 import Waitlist from "./waitlist";
+import SiteFooter from "./site-footer";
+import Link from "next/link";
+import { FAQS, PRODUCT, SITE_NAME, abs } from "@/lib/site";
+import { articlesByDate } from "@/content/journal";
+
+// One year out — keeps the Product offer's priceValidUntil from going stale.
+const priceValidUntil = new Date(Date.now() + 365 * 864e5)
+  .toISOString()
+  .slice(0, 10);
+
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": abs("/#webpage"),
+      url: abs("/"),
+      name: "Halen — Aegean Fleur de Sel",
+      isPartOf: { "@id": abs("/#website") },
+      about: { "@id": abs("/#product") },
+      primaryImageOfPage: { "@id": abs("/#primaryimage") },
+      inLanguage: "en",
+    },
+    {
+      "@type": "ImageObject",
+      "@id": abs("/#primaryimage"),
+      url: abs("/opengraph-image"),
+      width: 1200,
+      height: 630,
+    },
+    {
+      "@type": "Product",
+      "@id": abs("/#product"),
+      name: PRODUCT.name,
+      category: "Sea salt",
+      description:
+        "Single-origin fleur de sel, hand-harvested from the Aegean coast of Greece and dried by sun alone. Unrefined, additive-free finishing salt.",
+      brand: { "@type": "Brand", name: SITE_NAME },
+      sku: PRODUCT.sku,
+      image: abs(PRODUCT.image),
+      countryOfOrigin: { "@type": "Country", name: "Greece" },
+      weight: {
+        "@type": "QuantitativeValue",
+        value: PRODUCT.weightGrams,
+        unitCode: "GRM",
+      },
+      offers: {
+        "@type": "Offer",
+        price: PRODUCT.price,
+        priceCurrency: PRODUCT.currency,
+        priceValidUntil,
+        availability: "https://schema.org/PreOrder",
+        url: abs("/#reserve"),
+        seller: { "@id": abs("/#org") },
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: abs("/") },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: FAQS.map(({ q, a }) => ({
+        "@type": "Question",
+        name: q,
+        acceptedAnswer: { "@type": "Answer", text: a },
+      })),
+    },
+  ],
+};
 
 export default function Home() {
+  const journal = articlesByDate().slice(0, 3);
   return (
     <>
-      <SmoothScroll />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+      />
       <Reveal />
       <SiteNav />
 
@@ -129,6 +204,86 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---- From the Journal — editorial depth + internal links ---- */}
+      <section id="journal" className="mx-auto max-w-[1400px] px-7 sm:px-8 md:px-14 py-[clamp(4.5rem,14vh,10rem)]">
+        <div className="reveal grid md:grid-cols-12 gap-y-6 md:gap-x-12 mb-10 sm:mb-14">
+          <p className="label md:col-span-3 md:pt-3">The Journal</p>
+          <h2 className="serif text-[clamp(2rem,4.2vw,3rem)] text-ink leading-[1.08] md:col-span-9 max-w-[18ch]">
+            On salt, provenance, and the table.
+          </h2>
+        </div>
+
+        <ul className="reveal border-t border-line">
+          {journal.map((a) => (
+            <li key={a.slug} className="border-b border-line">
+              <Link
+                href={`/journal/${a.slug}`}
+                className="group grid md:grid-cols-12 gap-y-2 md:gap-x-12 items-baseline py-7 sm:py-9 tap"
+              >
+                <span className="label !text-ink-faint md:col-span-2">{a.kicker}</span>
+                <h3 className="serif text-[clamp(1.4rem,2.4vw,2rem)] text-ink leading-[1.12] md:col-span-7 transition-opacity duration-300 group-hover:opacity-60">
+                  {a.title}
+                </h3>
+                <span className="label !text-ink-faint md:col-span-3 md:text-right">
+                  {a.readingMinutes} min read
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <p className="reveal mt-9">
+          <Link href="/journal" className="label !text-ink nav-link tap">
+            All writing →
+          </Link>
+        </p>
+      </section>
+
+      {/* ---- Questions — FAQ (crawlable + FAQPage schema) ----------- */}
+      <section id="faq" className="border-t border-line bg-salt-wash">
+        <div className="mx-auto max-w-[1400px] px-7 sm:px-8 md:px-14 py-[clamp(4.5rem,14vh,10rem)]">
+          <div className="reveal grid md:grid-cols-12 gap-y-6 md:gap-x-12 mb-10 sm:mb-14">
+            <p className="label md:col-span-3 md:pt-3">Questions</p>
+            <h2 className="serif text-[clamp(2rem,4.2vw,3rem)] text-ink leading-[1.08] md:col-span-9 max-w-[16ch]">
+              Fleur de sel, answered.
+            </h2>
+          </div>
+
+          <div className="reveal border-t border-line">
+            {FAQS.map(({ q, a }) => (
+              <details key={q} className="group border-b border-line">
+                <summary className="flex items-baseline justify-between gap-6 cursor-pointer list-none py-6 sm:py-7 tap">
+                  <h3 className="serif text-[clamp(1.25rem,2vw,1.6rem)] text-ink leading-[1.2]">
+                    {q}
+                  </h3>
+                  <span
+                    className="label shrink-0 transition-transform duration-300 group-open:rotate-45"
+                    aria-hidden
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="text-ink-soft text-[0.95rem] max-w-[64ch] pb-7 pr-8 -mt-1">
+                  {a}
+                </p>
+              </details>
+            ))}
+          </div>
+
+          <p className="reveal text-ink-soft text-[0.95rem] mt-10 max-w-[52ch]">
+            Ready when you are —{" "}
+            <a href="#reserve" className="nav-link tap text-ink">
+              reserve a jar
+            </a>{" "}
+            from the first harvest, or read{" "}
+            <a href="#ritual" className="nav-link tap text-ink">
+              how it&rsquo;s made
+            </a>
+            .
+          </p>
+        </div>
+      </section>
+
       {/* ---- Reserve — asymmetric close ----------------------------- */}
       <section id="shop" className="border-t border-line">
         <div className="mx-auto max-w-[1400px] px-7 sm:px-8 md:px-14 py-[clamp(5rem,16vh,11rem)]">
@@ -155,17 +310,7 @@ export default function Home() {
       </section>
 
       {/* ---- Footer ------------------------------------------------- */}
-      <footer className="border-t border-line">
-        <div className="mx-auto max-w-[1400px] px-7 sm:px-8 md:px-14 py-11 sm:py-14 flex flex-col md:flex-row items-center justify-between gap-7 md:gap-8">
-          <span className="serif text-2xl text-ink">Halen</span>
-          <ul className="flex gap-8 sm:gap-10 label">
-            <li><a href="#salt" className="nav-link tap">The Salt</a></li>
-            <li><a href="#ritual" className="nav-link tap">Ritual</a></li>
-            <li><a href="#shop" className="nav-link tap">Reserve</a></li>
-          </ul>
-          <span className="label">Hand-harvested in Greece</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

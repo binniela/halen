@@ -38,9 +38,20 @@
 }
 
 html {
-  /* Lenis owns scroll; keep CSS smooth off to avoid fighting it */
-  scroll-behavior: auto;
+  /* Native scroll — the wheel/trackpad maps 1:1, no inertia library in the
+     way. scroll-behavior only smooths programmatic/anchor jumps, never the
+     user's wheel, so in-page links glide while free scrolling stays instant. */
+  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%; /* stop iOS auto-inflating type */
+}
+
+/* Anchor targets stop below the fixed nav instead of under it. */
+#salt,
+#ritual,
+#faq,
+#shop,
+#reserve {
+  scroll-margin-top: 5.5rem;
 }
 
 body {
@@ -102,9 +113,12 @@ body {
   background: var(--line);
 }
 
-/* ---- Hero water — slow Aegean drift -------------------- */
-/* Nature in motion, product as the calm center.
-   The water moves; everything else stays perfectly still. */
+/* ---- Hero water — static degrade state ----------------- */
+/* This sits behind the full-bleed hero video and is only ever seen in
+   the milliseconds before the poster/first frame paints (or if video
+   fails). The real water motion is the film, so this stays perfectly
+   still — a rich gradient reads more expensive than a drifting one, and
+   we avoid an off-screen background-position repaint loop. */
 
 .water {
   position: absolute;
@@ -113,8 +127,6 @@ body {
     radial-gradient(120% 90% at 20% 12%, var(--turquoise) 0%, transparent 55%),
     radial-gradient(120% 110% at 85% 28%, var(--aegean) 0%, transparent 60%),
     linear-gradient(165deg, var(--ultramarine) 0%, var(--aegean) 48%, var(--turquoise) 100%);
-  background-size: 200% 200%, 220% 220%, 170% 170%;
-  animation: drift 30s ease-in-out infinite;
   filter: saturate(1.04);
 }
 
@@ -125,17 +137,7 @@ body {
   inset: 0;
   background: radial-gradient(80% 55% at 50% -10%, rgba(252, 253, 253, 0.6) 0%, transparent 60%);
   mix-blend-mode: screen;
-  animation: shimmer 20s ease-in-out infinite;
-}
-
-@keyframes drift {
-  0%, 100% { background-position: 0% 50%, 100% 30%, 0% 0%; }
-  50%      { background-position: 100% 50%, 0% 70%, 100% 100%; }
-}
-
-@keyframes shimmer {
-  0%, 100% { opacity: 0.7; transform: translateY(0); }
-  50%      { opacity: 1;   transform: translateY(1.5%); }
+  opacity: 0.6;
 }
 
 /* ---- Cinematic video stage (A -> B -> C) -------------- */
@@ -186,32 +188,108 @@ body {
   background-size: 180px 180px;
 }
 
-/* Grounding seam — melts the film into the editorial white below */
+/* Grounding seam — melts the film into the editorial white below. Kept short
+   so the product copy/CTA sit ABOVE the white, not washed out by it. */
 .cine-seam {
   position: absolute;
   inset-inline: 0;
   bottom: 0;
-  height: 24vh;
+  height: 15vh;
   background: linear-gradient(180deg, rgba(252, 253, 253, 0) 0%, var(--salt) 100%);
   pointer-events: none;
 }
 
-.cine-overlay {
+/* Contrast pocket for the product message + CTA — a soft band of darkness
+   behind the lower copy so white type reads against the bright jar/sea, while
+   the jar (centre) and the bottom seam stay clear. Navy, not black; feathered
+   both ways so it reads as atmosphere, never a bar. */
+.cine-product-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(11, 27, 51, 0.82) 0%,
+    rgba(11, 27, 51, 0.66) 12%,
+    rgba(11, 27, 51, 0.42) 24%,
+    rgba(11, 27, 51, 0.12) 38%,
+    rgba(11, 27, 51, 0) 50%
+  );
+}
+
+/* Legibility insurance for white type over film — subtle, never a hard shadow. */
+.hero-text-shadow {
+  text-shadow: 0 1px 30px rgba(11, 27, 51, 0.45), 0 1px 3px rgba(11, 27, 51, 0.32);
+}
+
+/* Reserve CTA — a refined glass pill. Discoverable, premium, not ecommerce. */
+.cta-reserve {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65em;
+  font-family: var(--font-sans), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  font-size: 0.72rem;
+  color: var(--salt);
+  padding: 1rem 2.5rem;
+  border: 1px solid rgba(252, 253, 253, 0.62);
+  background: rgba(252, 253, 253, 0.1);
+  backdrop-filter: blur(10px) saturate(1.15);
+  -webkit-backdrop-filter: blur(10px) saturate(1.15);
+  border-radius: 3px;
+  box-shadow: 0 12px 44px -18px rgba(11, 27, 51, 0.65);
+  transition: background 450ms var(--film), border-color 450ms var(--film),
+    transform 450ms var(--film);
+}
+.cta-reserve:hover {
+  background: rgba(252, 253, 253, 0.2);
+  border-color: var(--salt);
+  transform: translateY(-1px);
+}
+.cta-reserve .arrow {
+  transition: transform 450ms var(--film);
+}
+.cta-reserve:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Discrete graceful fade — used only by the product overlay as it rises
+   over clip C. The hero/cue copy is NOT given this; it is scroll-coupled
+   and must track the scroll 1:1 (a transition there would lag ~1s behind
+   the finger and feel rubbery). */
+.cine-fade {
   transition: opacity 1000ms var(--film);
 }
 
-/* Breathing scroll cue */
+/* Scroll cue — a single point of light gliding down a faint track.
+   One clear, calm gesture that reads "continue"; no bounce, no pulse. */
 .scroll-line {
+  display: block;
+  position: relative;
   width: 1px;
-  height: 44px;
-  background: linear-gradient(180deg, rgba(252, 253, 253, 0.8), rgba(252, 253, 253, 0));
-  transform-origin: top;
-  animation: scrollPulse 2.6s var(--film) infinite;
+  height: 54px;
+  overflow: hidden;
+  background: rgba(252, 253, 253, 0.16);
 }
-@keyframes scrollPulse {
-  0%   { transform: scaleY(0.3); opacity: 0.2; }
-  45%  { transform: scaleY(1);   opacity: 0.9; }
-  100% { transform: scaleY(0.3); opacity: 0.2; transform-origin: bottom; }
+.scroll-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  height: 55%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(252, 253, 253, 0.95) 50%,
+    transparent 100%
+  );
+  animation: scrollTravel 3.2s var(--film) infinite;
+}
+@keyframes scrollTravel {
+  0%   { transform: translateY(-120%); opacity: 0; }
+  35%  { opacity: 1; }
+  65%  { opacity: 1; }
+  100% { transform: translateY(190%); opacity: 0; }
 }
 
 /* ---- Scroll-aware nav --------------------------------- */
@@ -227,7 +305,6 @@ body {
 }
 .nav-link {
   position: relative;
-  transition: opacity 300ms ease;
 }
 .nav-link::after {
   content: "";
@@ -257,16 +334,263 @@ body {
 @media (prefers-reduced-motion: reduce) {
   :root { --cine-fade: 1ms; }
   .cine-video { transition: none; }
-  .scroll-line { animation: none; }
+  .cine-fade { transition: none; }
+  .scroll-line::after { animation: none; opacity: 0.5; }
 }
 
-/* Mobile: the drifting water (animates background-position = constant
-   repaint) and the blend-mode grain are invisible behind full-bleed video
-   yet costly to composite on a phone. Drop both; keep a static gradient. */
+/* Mobile: the blend-mode grain is invisible behind full-bleed video yet
+   costly to composite on a phone. Drop it; keep the static gradient. */
 @media (max-width: 767px) {
-  .water { animation: none; }
-  .water::after { animation: none; opacity: 0.6; }
   .grain { display: none; }
+}
+
+/* ---- Editorial prose (Journal) ------------------------ */
+/* Long-form reading type: sans body for legibility, serif heads to match the
+   brand. Tuned for a ~760px measure. */
+.prose {
+  color: var(--ink-soft);
+  font-size: 1.0625rem;
+  line-height: 1.78;
+}
+.prose > * + * {
+  margin-top: 1.45em;
+}
+.prose p {
+  max-width: 68ch;
+}
+.prose .lede {
+  font-size: clamp(1.2rem, 2.3vw, 1.45rem);
+  line-height: 1.5;
+  color: var(--ink);
+  letter-spacing: -0.003em;
+}
+.prose h2 {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 500;
+  color: var(--ink);
+  font-size: clamp(1.5rem, 3vw, 2.05rem);
+  line-height: 1.12;
+  letter-spacing: -0.005em;
+  margin-top: 2.4em;
+}
+.prose h3 {
+  font-family: var(--font-serif), Georgia, serif;
+  color: var(--ink);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  line-height: 1.15;
+  margin-top: 1.9em;
+}
+.prose strong {
+  color: var(--ink);
+  font-weight: 400;
+}
+.prose em {
+  font-style: italic;
+}
+.prose a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line);
+  transition: text-decoration-color 300ms var(--film);
+}
+.prose a:hover {
+  text-decoration-color: var(--ink);
+}
+.prose blockquote {
+  margin-block: 2em;
+  padding-left: 0;
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  line-height: 1.3;
+  color: var(--ink);
+  max-width: 24ch;
+}
+.prose ul {
+  padding-left: 1.1em;
+  list-style: none;
+}
+.prose li {
+  position: relative;
+  padding-left: 1.1em;
+}
+.prose li + li {
+  margin-top: 0.6em;
+}
+.prose li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.85em;
+  width: 5px;
+  height: 1px;
+  background: var(--ink-faint);
+}
+
+/* Section anchors clear the sticky header + progress bar. */
+.prose h2,
+.prose h3 {
+  scroll-margin-top: 6rem;
+}
+
+/* Drop cap on the opening line — a quiet print convention. */
+.prose .lede::first-letter {
+  float: left;
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 500;
+  font-size: 3.1em;
+  line-height: 0.72;
+  padding-right: 0.09em;
+  margin-top: 0.06em;
+  color: var(--ink);
+}
+
+/* Pull quote — centred, generous, no bar. */
+.prose blockquote {
+  text-align: center;
+  max-width: 28ch;
+  margin-inline: auto;
+  margin-block: 2.6em;
+}
+
+/* Comparison tables — editorial, hairline-ruled, not a data grid. */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 2.2em;
+  font-size: 0.95rem;
+}
+.prose thead th {
+  font-family: var(--font-sans), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.66rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+  text-align: left;
+  padding: 0 0 0.9rem;
+  border-bottom: 1px solid var(--ink);
+}
+.prose tbody td {
+  vertical-align: top;
+  padding: 0.85rem 1.2rem 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.5;
+}
+.prose tbody td:first-child {
+  color: var(--ink);
+  width: 26%;
+}
+.prose thead th + th,
+.prose tbody td + td {
+  padding-left: 1.2rem;
+}
+
+/* Figures + captions for in-body imagery. */
+.prose figure {
+  margin-block: 2.4em;
+}
+.prose figcaption {
+  margin-top: 0.7rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+}
+
+/* ---- Reading progress --------------------------------- */
+.reading-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--turquoise);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 60;
+  transition: transform 90ms linear;
+  pointer-events: none;
+}
+
+/* ---- Table of contents -------------------------------- */
+.toc-label {
+  margin-bottom: 1rem;
+}
+.toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--line);
+}
+.toc li {
+  padding: 0;
+  margin: 0;
+}
+.toc li::before {
+  display: none;
+}
+.toc li[data-level="3"] a {
+  padding-left: 1.9rem;
+}
+.toc a {
+  display: block;
+  margin-left: -1px;
+  padding: 0.42rem 0 0.42rem 1rem;
+  border-left: 1px solid transparent;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  color: var(--ink-faint);
+  transition: color 250ms var(--film), border-color 250ms var(--film);
+}
+.toc a:hover {
+  color: var(--ink-soft);
+}
+.toc a.is-active {
+  color: var(--ink);
+  border-left-color: var(--ink);
+}
+
+/* Mobile contents disclosure */
+.toc-mobile {
+  margin-bottom: 2.75rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.toc-mobile > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.05rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.toc-mobile > summary::-webkit-details-marker {
+  display: none;
+}
+.toc-mobile > summary::after {
+  content: "+";
+  color: var(--ink-faint);
+  transition: transform 300ms var(--film);
+}
+.toc-mobile[open] > summary::after {
+  transform: rotate(45deg);
+}
+.toc-mobile .toc {
+  padding-bottom: 1.25rem;
+}
+.toc-mobile .toc-label {
+  display: none;
+}
+.toc-mobile .toc ul {
+  border-left: none;
+}
+.toc-mobile .toc a {
+  padding-left: 0;
+  border-left: none;
+  margin-left: 0;
+}
+.toc-mobile .toc li[data-level="3"] a {
+  padding-left: 0.9rem;
 }
 
 /* ---- Scroll-entry reveal ------------------------------ */
@@ -283,7 +607,6 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .water, .water::after { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
 }

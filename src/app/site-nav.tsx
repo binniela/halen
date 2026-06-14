@@ -6,8 +6,7 @@ import { useEffect, useRef } from "react";
  * Deliberate two-state nav:
  *  - over the cinematic film  -> white type, no chrome
  *  - over the editorial body  -> ink type, translucent salt blur + hairline
- * Driven by Lenis's scroll event (the native one doesn't fire under Lenis),
- * with a window-scroll fallback for reduced-motion. State is applied via
+ * Driven by the native scroll event (rAF-throttled). State is applied via
  * inline style so it can't lose a Tailwind layer-cascade fight.
  */
 export default function SiteNav() {
@@ -41,12 +40,6 @@ export default function SiteNav() {
 
     apply();
 
-    const lenis = (window as unknown as { lenis?: { on: Function; off: Function } }).lenis;
-    let detach = () => {};
-    if (lenis?.on) {
-      lenis.on("scroll", apply);
-      detach = () => lenis.off("scroll", apply);
-    }
     let ticking = false;
     const onScroll = () => {
       if (ticking) return;
@@ -59,7 +52,6 @@ export default function SiteNav() {
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      detach();
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
@@ -80,6 +72,9 @@ export default function SiteNav() {
           </li>
           <li className="hidden sm:block">
             <a href="#ritual" className="nav-link tap">Ritual</a>
+          </li>
+          <li className="hidden sm:block">
+            <a href="/journal" className="nav-link tap">Journal</a>
           </li>
           <li>
             <a href="#shop" className="nav-link tap">Reserve</a>

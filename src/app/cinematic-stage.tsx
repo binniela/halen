@@ -58,9 +58,17 @@ export default function CinematicStage() {
     let reachedC = false;
     let safety = 0;
 
+    // Slow the ambient loops for a calmer, more meditative motion.
+    // (B, the push-in, keeps its native pace.) playbackRate resets on
+    // load(), so we re-apply it at every play() for A and C.
+    const LOOP_RATE = 0.7;
+
     // --- 1. Hero loop — poster paints instantly, frames replace it ----
     a.classList.add("show");
-    const startA = () => a.play().catch(() => {});
+    const startA = () => {
+      a.playbackRate = LOOP_RATE;
+      a.play().catch(() => {});
+    };
     startA();
 
     // Autoplay fallback (strict mobile / low-power): start on first gesture.
@@ -100,7 +108,10 @@ export default function CinematicStage() {
       rafId = requestAnimationFrame(() => {
         rafId = 0;
         const p = Math.min(1, window.scrollY / (window.innerHeight * 0.72));
-        hero.style.opacity = String(1 - p);
+        // smoothstep: the headline holds a beat, then dissolves — gentler
+        // at both ends than a linear ramp, so the film takes over cleanly.
+        const eased = p * p * (3 - 2 * p);
+        hero.style.opacity = String(1 - eased);
         cue.style.opacity = String(Math.max(0, 1 - p * 2.2));
       });
     };
@@ -115,6 +126,7 @@ export default function CinematicStage() {
       window.clearTimeout(safety);
 
       c.currentTime = 0;
+      c.playbackRate = LOOP_RATE;
       c.play().catch(() => {});
       c.classList.add("show"); // C rises over B; start frames match
       product.style.opacity = "1";
@@ -167,8 +179,10 @@ export default function CinematicStage() {
           b.pause();
           c.pause();
         } else if (phase.current === "hero") {
+          a.playbackRate = LOOP_RATE;
           a.play().catch(() => {});
         } else if (phase.current === "product") {
+          c.playbackRate = LOOP_RATE;
           c.play().catch(() => {});
         }
       },
@@ -220,12 +234,12 @@ export default function CinematicStage() {
         {/* HERO overlay (over A) */}
         <div
           ref={heroRef}
-          className="cine-overlay absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-salt px-7"
+          className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-salt px-7"
         >
-          <p className="label !text-salt/70 !tracking-[0.32em] sm:!tracking-[0.42em] mb-5 sm:mb-7">
+          <p className="label !text-salt/75 !tracking-[0.32em] sm:!tracking-[0.42em] mb-5 sm:mb-7 hero-text-shadow">
             Aegean Sea Salt
           </p>
-          <h1 className="serif text-[clamp(2.6rem,9vw,7.5rem)] font-medium leading-[1.0] sm:leading-[0.98] text-balance max-w-[12ch] sm:max-w-[14ch]">
+          <h1 className="serif text-[clamp(2.6rem,9vw,7.5rem)] font-medium leading-[1.0] sm:leading-[0.98] text-balance max-w-[12ch] sm:max-w-[14ch] hero-text-shadow">
             From still water, a quiet harvest.
           </h1>
         </div>
@@ -233,7 +247,7 @@ export default function CinematicStage() {
         {/* scroll cue — a single quiet line that draws downward, no label */}
         <div
           ref={cueRef}
-          className="cine-overlay absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
           aria-hidden
         >
           <span className="scroll-line" />
@@ -242,20 +256,18 @@ export default function CinematicStage() {
         {/* PRODUCT overlay (over C) — sparse; jar stays the focus */}
         <div
           ref={productRef}
-          className="absolute inset-0 z-10 cine-overlay"
+          className="absolute inset-0 z-10 cine-fade"
           style={{ opacity: 0 }}
         >
-          {/* grounding seam: melts the film into the editorial white below */}
-          <div className="cine-seam" aria-hidden />
-          <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-7 pb-[20vh] px-6 text-center">
-            <p className="serif italic text-[clamp(1.5rem,3.4vw,2.4rem)] text-salt max-w-xl leading-snug">
+          {/* lower-third contrast vignette — anchors the copy below the jar */}
+          <div className="cine-product-scrim" aria-hidden />
+          <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-5 pb-[7vh] sm:pb-[8vh] px-6 text-center">
+            <p className="serif italic text-[clamp(1.5rem,3.6vw,2.6rem)] text-salt max-w-[18ch] leading-snug text-balance hero-text-shadow">
               Hand-harvested from the Greek coast.
             </p>
-            <a
-              href="#shop"
-              className="label !text-salt border border-salt/35 rounded-[3px] px-9 py-3.5 !tracking-[0.26em] transition-colors duration-300 hover:border-salt/80 hover:bg-salt/10"
-            >
+            <a href="#shop" className="cta-reserve tap mt-1">
               Reserve a jar
+              <span className="arrow" aria-hidden>→</span>
             </a>
           </div>
         </div>

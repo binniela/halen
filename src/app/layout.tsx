@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
+import { SITE_URL, SITE_NAME, SITE_LOCALE, abs } from "@/lib/site";
 
 const serif = Cormorant_Garamond({
   variable: "--font-serif",
@@ -15,43 +16,58 @@ const sans = Jost({
   weight: ["300", "400"],
 });
 
-const SITE = "https://halen.salt"; // placeholder — set to the real domain on deploy
-
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Halen — Aegean Sea Salt",
+    default: "Halen — Aegean Fleur de Sel | Hand-Harvested Greek Sea Salt",
     template: "%s · Halen",
   },
   description:
-    "Single-origin fleur de sel, hand-harvested by hand from the Greek coast and dried by sun alone. Unrefined, additive-free, 125g.",
-  applicationName: "Halen",
+    "Halen is single-origin fleur de sel, hand-harvested from the Aegean coast of Greece and dried by sun alone. Unrefined finishing salt, additive-free, 125g jar.",
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: "food",
   keywords: [
     "fleur de sel",
-    "sea salt",
-    "Aegean salt",
+    "Aegean sea salt",
     "Greek sea salt",
     "finishing salt",
     "hand-harvested salt",
+    "flaky sea salt",
+    "unrefined sea salt",
+    "single-origin salt",
   ],
   alternates: { canonical: "/" },
+  formatDetection: { telephone: false, address: false, email: false },
   openGraph: {
     type: "website",
-    siteName: "Halen",
-    title: "Halen — Aegean Sea Salt",
+    siteName: SITE_NAME,
+    title: "Halen — Aegean Fleur de Sel",
     description:
-      "Single-origin fleur de sel, hand-harvested from the Greek coast. Unrefined. Additive-free.",
-    url: SITE,
-    locale: "en_GB",
+      "Single-origin fleur de sel, hand-harvested from the Greek coast and dried by sun alone. Unrefined. Additive-free.",
+    url: SITE_URL,
+    locale: SITE_LOCALE,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Halen — Aegean Sea Salt",
+    title: "Halen — Aegean Fleur de Sel",
     description:
-      "Single-origin fleur de sel, hand-harvested from the Greek coast.",
+      "Single-origin fleur de sel, hand-harvested from the Greek coast. Unrefined. Additive-free.",
   },
-  appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "Halen" },
-  robots: { index: true, follow: true },
+  appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: SITE_NAME },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {
@@ -59,30 +75,29 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
+// Site-wide identity only. Page-level schema (WebPage, Product, FAQPage,
+// Article, breadcrumbs) is emitted by each page so it never appears on a route
+// it doesn't describe. Other pages reference #website / #org by @id.
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      name: "Halen",
-      description: "Single-origin Aegean sea salt, hand-harvested in Greece.",
-      url: SITE,
+      "@type": "WebSite",
+      "@id": abs("/#website"),
+      url: abs("/"),
+      name: SITE_NAME,
+      description: "Single-origin Aegean fleur de sel, hand-harvested in Greece.",
+      inLanguage: "en",
+      publisher: { "@id": abs("/#org") },
     },
     {
-      "@type": "Product",
-      name: "Halen Fleur de Sel",
-      category: "Sea salt",
-      description:
-        "Single-origin fleur de sel, hand-harvested from the Greek coast and dried by sun alone. Unrefined, additive-free.",
-      brand: { "@type": "Brand", name: "Halen" },
-      weight: { "@type": "QuantitativeValue", value: 125, unitCode: "GRM" },
-      offers: {
-        "@type": "Offer",
-        price: "28.00",
-        priceCurrency: "EUR",
-        availability: "https://schema.org/PreOrder",
-        url: `${SITE}/#reserve`,
-      },
+      "@type": "Organization",
+      "@id": abs("/#org"),
+      name: SITE_NAME,
+      url: abs("/"),
+      description: "Single-origin Aegean sea salt, hand-harvested in Greece.",
+      logo: { "@type": "ImageObject", url: abs("/icon.svg") },
+      slogan: "From still water, a quiet harvest.",
     },
   ],
 };
