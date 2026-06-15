@@ -6,6 +6,7 @@ import ReserveButton from "./_components/reserve-button";
 import ReservationModal from "./_components/reservation-modal";
 import StickyCta from "./_components/sticky-cta";
 import TrackOnView from "./_components/track-on-view";
+import Photo from "./_components/photo";
 import Link from "next/link";
 import { FAQS, PRODUCT, TRUST_MARKERS, TESTIMONIALS, SITE_NAME, abs } from "@/lib/site";
 import { articlesByDate } from "@/content/journal";
@@ -105,29 +106,39 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---- Provenance — full-bleed origin photograph ------------- */}
+      <figure className="reveal w-full">
+        <Photo
+          name="worker"
+          alt="A salt worker raking fleur de sel by hand from the surface of an Aegean salt pan at dusk"
+          imgClassName="block w-full aspect-[16/10] md:aspect-[2/1] object-cover"
+        />
+      </figure>
+
       {/* ---- The Product — name, price, proof, action -------------- */}
       <section id="salt" className="bg-salt-wash">
         <TrackOnView event="product_viewed" />
         <div className="mx-auto max-w-[1400px] px-7 sm:px-8 md:px-14 py-[clamp(4.5rem,14vh,10rem)] grid md:grid-cols-2 gap-10 md:gap-24 items-center">
-          {/* real product film, framed editorially */}
-          <div className="reveal order-2 md:order-1 flex justify-center">
-            <figure className="relative w-full max-w-[340px] sm:max-w-[420px] aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-ultramarine ring-1 ring-line shadow-[0_22px_50px_-44px_rgba(22,38,63,0.35)]">
-              <video
-                className="absolute inset-0 h-full w-full object-cover"
-                poster="/videos/clip-c-poster.jpg"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="none"
-                aria-hidden
-              >
-                <source media="(max-width: 767px)" type="video/webm" src="/videos/clip-c-720.webm" />
-                <source media="(max-width: 767px)" type="video/mp4" src="/videos/clip-c-720.mp4" />
-                <source type="video/webm" src="/videos/clip-c-1080.webm" />
-                <source type="video/mp4" src="/videos/clip-c-1080.mp4" />
-              </video>
-            </figure>
+          {/* real product imagery: clean studio jar + macro of the crystals */}
+          <div className="reveal order-2 md:order-1">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-[440px] mx-auto">
+              <figure className="relative aspect-[3/4] overflow-hidden ring-1 ring-line bg-ultramarine shadow-[0_22px_50px_-44px_rgba(22,38,63,0.35)]">
+                <img
+                  src="/videos/clip-c-poster.jpg"
+                  alt="A sealed studio jar of Halen fleur de sel against the Aegean sea"
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </figure>
+              <figure className="relative aspect-[3/4] overflow-hidden ring-1 ring-line bg-salt-wash">
+                <Photo
+                  name="salt"
+                  alt="Extreme macro of Halen fleur de sel showing the delicate, flaked crystal structure"
+                  imgClassName="absolute inset-0 h-full w-full object-cover"
+                />
+              </figure>
+            </div>
           </div>
 
           <div className="reveal order-1 md:order-2 max-w-md">
@@ -334,16 +345,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---- Reserve — asymmetric close ----------------------------- */}
-      <section id="shop" className="border-t border-line">
-        <div className="mx-auto max-w-[1400px] px-7 sm:px-8 md:px-14 py-[clamp(5rem,16vh,11rem)]">
+      {/* ---- Use — full-bleed closing seduction before the reserve - */}
+      <figure className="reveal w-full">
+        <Photo
+          name="cookie"
+          alt="A hand sprinkling flaky fleur de sel over warm, just-baked chocolate cookies"
+          imgClassName="block w-full aspect-[16/10] md:aspect-[2/1] object-cover"
+        />
+        <figcaption className="mx-auto max-w-[1400px] px-7 sm:px-8 md:px-14 mt-5 label !text-ink-faint">
+          A pinch, off the heat.
+        </figcaption>
+      </figure>
+
+      {/* ---- Reserve — full-bleed dark closing moment -------------- */}
+      <section id="shop" className="bg-ink">
+        <div className="mx-auto max-w-[1400px] px-7 sm:px-8 md:px-14 py-[clamp(7.5rem,24vh,16rem)]">
           <div className="reveal grid md:grid-cols-12 gap-y-12 md:gap-x-16 items-start">
             <div className="md:col-span-6">
-              <p className="label mb-6">The First Harvest</p>
-              <h2 className="serif text-[clamp(2.1rem,4.4vw,3.4rem)] text-ink leading-[1.05] max-w-[13ch] mb-7">
+              <p className="label !text-turquoise mb-6">The First Harvest</p>
+              <h2 className="serif text-[clamp(2.1rem,4.4vw,3.4rem)] text-salt leading-[1.05] max-w-[13ch] mb-7">
                 Reserved before the first jars are sealed.
               </h2>
-              <p className="text-ink-soft max-w-[40ch]">
+              <p className="text-salt/90 max-w-[40ch]">
                 Fleur de sel is the fragile first bloom of crystals lifted from
                 the surface of the pans — the most prized, the most scarce. The
                 first harvest is small. Reserve a jar and we&rsquo;ll set one
@@ -352,21 +375,21 @@ export default function Home() {
             </div>
 
             <div id="reserve" className="md:col-span-6 md:col-start-8 md:pt-3">
-              <p className="label !text-ink-soft mb-3">Halen Fleur de Sel</p>
+              <p className="label !text-salt/65 mb-3">Halen Fleur de Sel</p>
               <div className="flex items-baseline gap-4 mb-8">
-                <span className="serif text-ink text-[clamp(2.3rem,5vw,3.1rem)] leading-none">
+                <span className="serif text-turquoise text-[clamp(2.3rem,5vw,3.1rem)] leading-none">
                   {PRODUCT.priceDisplay}
                 </span>
-                <span className="label !text-ink-faint !tracking-[0.18em]">
+                <span className="label !text-salt/45 !tracking-[0.18em]">
                   {PRODUCT.weightDisplay}
                 </span>
               </div>
               <ReserveButton
                 source="reserve_section"
-                variant="ink"
+                variant="cream"
                 className="w-full sm:w-auto justify-center sm:justify-start"
               />
-              <p className="label !text-[0.62rem] !tracking-[0.2em] !text-ink-faint mt-6 max-w-[40ch]">
+              <p className="label !text-[0.62rem] !tracking-[0.2em] !text-salt/55 mt-6 max-w-[40ch]">
                 No payment now. One quiet note when reservations open — first
                 access, before anyone else.
               </p>

@@ -4,7 +4,7 @@ import { track } from "@/lib/analytics";
 import { openReservation } from "@/lib/reserve";
 import { PRODUCT } from "@/lib/site";
 
-type Variant = "glass" | "ink" | "sticky";
+type Variant = "glass" | "ink" | "sticky" | "cream";
 
 /**
  * The single primary CTA, used everywhere. Always carries the price (the whole
