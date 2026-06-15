@@ -48,6 +48,8 @@ html {
 /* Anchor targets stop below the fixed nav instead of under it. */
 #salt,
 #ritual,
+#voices,
+#journal,
 #faq,
 #shop,
 #reserve {

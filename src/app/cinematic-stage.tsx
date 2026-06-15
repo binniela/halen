@@ -258,9 +258,10 @@ export default function CinematicStage() {
           <div className="mt-6">
             <ReserveButton
               source="hero"
-              variant="glass"
+              variant="ink"
               label="Reserve the First Harvest"
               showPrice={false}
+              className="shadow-[0_14px_44px_-16px_rgba(11,27,51,0.75)]"
             />
           </div>
         </div>
@@ -283,17 +284,15 @@ export default function CinematicStage() {
           {/* lower-third contrast vignette — anchors the copy below the jar */}
           <div className="cine-product-scrim" aria-hidden />
           <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-4 pb-[7vh] sm:pb-[8vh] px-6 text-center">
-            <p className="serif italic text-[clamp(1.5rem,3.6vw,2.6rem)] text-salt max-w-[18ch] leading-snug text-balance hero-text-shadow">
-              Hand-harvested from the Greek coast.
-            </p>
-            <p className="label !text-salt/80 !tracking-[0.3em] hero-text-shadow">
+            <p className="label !text-salt/85 !tracking-[0.3em] hero-text-shadow">
               First Harvest · {PRODUCT.priceDisplay}
             </p>
             <ReserveButton
               source="product_overlay"
-              variant="glass"
+              variant="cream"
               label="Reserve the First Harvest"
               showPrice={false}
+              className="shadow-[0_14px_44px_-16px_rgba(11,27,51,0.55)]"
             />
           </div>
         </div>
